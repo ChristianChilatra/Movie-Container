@@ -7,7 +7,13 @@ export function createElement(type, props, content) {
 
   for (const key in props) {
     if(key === 'children'){
-      render(props[key],$element);
+      if (Array.isArray(props[key])) {
+        props[key].forEach((el) => {
+          render(el, $element);
+        });
+      } else {
+        render(props[key], $element);
+      }
     }else{
       $element.setAttribute(key, props[key]);
     }

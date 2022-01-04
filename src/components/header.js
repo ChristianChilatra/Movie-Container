@@ -31,7 +31,6 @@ const liStyle = styledComponent.li`
   font: var(--body2-bold);
   display: flex;
   align-items: center;
-  
 `;
 const aStyle = styledComponent.a`
   text-decoration: none;
@@ -89,9 +88,9 @@ class Header extends Component {
             "img",
             {
               class: "logo",
-              src: "../../img/logo-blockBuster.svg",
+              src: "../../icon/clapperboard.png",
               with: 106,
-              height: 64,
+              height: 106,
             },
             ""
           ),

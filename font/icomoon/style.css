@@ -1,35 +1,10 @@
-:root {
-  --primary: #6f8199;
-  --white: #fffffe;
-  --grey: #a7a9be;
-  --black: #000000;
-  --background: #0f0e17;
-  --headline2: extrabold 2.875rem/3.5rem Montserrat;
-  --headline1: 700 3rem/3.625rem Montserrat;
-  --headline3: 700 1.75rem/normal Montserrat;
-  --headline4: 700 1.5625rem/normal Montserrat;
-  --button: 700 1.125rem/1.75rem Montserrat;
-  --caption: 400 0.75rem/1.375rem Montserrat;
-  --body1-regular: 400 1.125rem/1.6875rem Montserrat;
-  --body1-bold: 700 1.125rem/1.6875rem Montserrat;
-  --body2-regular: 400 1rem/1.375rem Montserrat;
-  --body2-bold: 700 1rem/1.1875rem Montserrat;
-}
-
-body {
-  color: var(--white);
-  background-color: var(--black);
-  font: var(--headline1);
-  margin: 0;
-}
-
 @font-face {
   font-family: 'icomoon';
-  src:  url('../font/icomoon/fonts/icomoon.eot?9dby1x');
-  src:  url('../font/icomoon/fonts/icomoon.eot?9dby1x#iefix') format('embedded-opentype'),
-    url('../font/icomoon/fonts/icomoon.ttf?9dby1x') format('truetype'),
-    url('../font/icomoon/fonts/icomoon.woff?9dby1x') format('woff'),
-    url('../font/icomoon/fonts/icomoon.svg?9dby1x#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?9dby1x');
+  src:  url('fonts/icomoon.eot?9dby1x#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?9dby1x') format('truetype'),
+    url('fonts/icomoon.woff?9dby1x') format('woff'),
+    url('fonts/icomoon.svg?9dby1x#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -43,7 +18,7 @@ body {
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;  
+  line-height: 1;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -90,5 +65,5 @@ body {
 }
 .icon-icon-search:before {
   content: "\e909";
-  color: black;
+  color: #fffffe;
 }

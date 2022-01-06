@@ -1,0 +1,11 @@
+.movie-banner:nth-child(1) {
+  margin-inline-start: 4.8rem;
+}
+
+.movie-banner:nth-child(3) {
+  margin-inline-end: 4.8rem;
+}
+
+.containerMovie::-webkit-scrollbar {
+  display: none;
+}

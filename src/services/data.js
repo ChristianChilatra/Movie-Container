@@ -14,7 +14,7 @@ export async function movieBanner() {
 
   const data = await buildData();
   const numberMovie = Array.from({ length: 3 }, () =>
-    Math.floor(Math.random() * (21 - 1) + 1)
+    Math.floor(Math.random() * (20 - 1) + 1)
   );
   const selectPathMovie = Array.from(
     numberMovie,(x) => data.results[x]["backdrop_path"]);

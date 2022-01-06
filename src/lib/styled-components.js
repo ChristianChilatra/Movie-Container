@@ -6,8 +6,9 @@ const styledComponent = {};
 
 container.forEach((el) => {
   styledComponent[el] = function (string) {
-    return function (props, content) {
-      return createElement(el, { style: string, ...props }, content);
+    return function (props, content, value) {
+      const setStyle = (value? value : '') + string
+      return createElement(el, { style: setStyle, ...props }, content);
     };
   };
 });

@@ -3,7 +3,7 @@ import { Component } from "../lib/react.js";
 import Filter from "./filter.js";
 import styledComponent from "../lib/styled-components.js";
 
-const HeaderStyle = styledComponent.header`
+const headerStyle = styledComponent.header`
   inline-size: auto;
   block-size: 7rem;
   margin: 0;
@@ -11,13 +11,14 @@ const HeaderStyle = styledComponent.header`
   justify-content: space-around;
   align-items: center;
   gap: 3rem;
+  border: 1px solid red;
 `;
 
 
 class Header extends Component {
 
   render() {
-    return HeaderStyle(
+    return headerStyle(
       {
         children: [
           createChildren(

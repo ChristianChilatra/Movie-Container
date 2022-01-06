@@ -1,6 +1,6 @@
 export function dynamicStyle(){
 
-  const bannerStyle = () =>{
+  function bannerStyle(){
 
     const $bannerWidth = document.querySelector('.banner')
     const $movieBannerWidth = document.querySelectorAll(".movie-banner");

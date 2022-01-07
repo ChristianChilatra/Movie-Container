@@ -6,7 +6,6 @@ import Movie from "./movie.js";
 
 
 const wrapperMoviesStyle = styledComponent.main`
-  border: 1px solid red;
   inline-size: 100%;
 `;
 const titleStyle = styledComponent.h1`
@@ -14,19 +13,29 @@ const titleStyle = styledComponent.h1`
   margin: 0;
 `;
 const containerMovieStyle = styledComponent.div`
-  border: 1px solid red;
   inline-size: 100%;
   block-size: auto;
   display:grid;
   grid-template-columns: repeat(auto-fill, 13.75rem);
   grid-template-rows: repeat(auto-fill, 20.625rem);
-  gap: 1rem:
+  grid-gap: 1rem;
+  justify-content: center;
 `;
 
 const { movies, posterMovies } = await listMovie();
 
 class ListMovie extends Component {
   render() {
+
+    const listMovie = Array.from(
+      movies,
+      (x, index) =>
+        new Movie({
+          title: x["title"],
+          average: x["average"],
+          poster: posterMovies[index],
+        })
+    );
 
     return wrapperMoviesStyle(
       {
@@ -36,14 +45,7 @@ class ListMovie extends Component {
           containerMovieStyle(
             {
               class: "containerMovieStyle",
-              children: [
-                new Movie({ title: movies[0]["title"], poster: posterMovies[0] }),
-                new Movie({ title: movies[0]["title"], poster: posterMovies[1] }),
-                new Movie({ title: movies[0]["title"], poster: posterMovies[2] }),
-                new Movie({ title: movies[0]["title"], poster: posterMovies[3] }),
-                new Movie({ title: movies[0]["title"], poster: posterMovies[4] }),
-                new Movie({ title: movies[0]["title"], poster: posterMovies[5] }),
-              ],
+              children: listMovie,
             },
             ""
           ),

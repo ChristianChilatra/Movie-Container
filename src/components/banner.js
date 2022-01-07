@@ -3,32 +3,79 @@ import { Component } from "../lib/react.js";
 import styledComponent from "../lib/styled-components.js";
 import { movieBanner } from "../services/data.js";
 
-const bannerStyle = styledComponent.div`
+const bannerStyle = styledComponent.section`
   inline-size: auto;
-  block-size: 22rem;
   display: flex;
-  border: 1px solid red;
-`;
-
-const containerMovieStyle = styledComponent.div`
-  position: fixed;
-  inset-inline-start: 0;
-  inline-size: 100%;
-  block-size: 19rem;
-  display: flex;
-  gap: 1rem;
-  border: 1px solid red;
-  scroll-behavior: smooth;
-  overflow-x: auto;
-`;
-
-const movieStyle = styledComponent.div`
-  inline-size: 0;
-  block-size: 19rem;
-  background-size: cover;
+  justify-content: center;
+  position: relative;
   flex-shrink: 0;
 `;
 
+const containerMovieStyle = styledComponent.div`
+  position: absolute;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+`;
+
+const movieStyle = styledComponent.div`
+  block-size: auto;
+  background-size: cover;
+  flex-shrink: 0;
+  border-radius: 8px;
+  position: relative;
+  display: grid;
+`;
+
+const buttonBannerPlayStyle = styledComponent.div`
+  grid-area: play;
+  inline-size: 12.18rem;
+  block-size: 3rem;
+  border-radius: 0.25rem;
+  background: var(--primary);
+  padding: 0 2rem;
+  border: 1px solid var(--primary);
+  font: var(--button);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--black);
+  box-sizing: content-box;
+  cursor: pointer;
+`;
+const buttonBannerAddStyle = styledComponent.div`
+  grid-area: add;
+  inline-size: 12.18rem;
+  block-size: 3rem;
+  border-radius: 0.25rem;
+  padding: 0 2rem;
+  background: var(--black);
+  border: 1px solid var(--primary);
+  font: var(--button);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--primary);
+  box-sizing: content-box;
+  cursor: pointer;
+`;
+const selectedBannerStyle = styledComponent.div`
+  inline-size: 5rem;
+  block-size: 2rem;
+  position: relative;
+  inset-block-end: -100%;
+  display:flex;
+  gap: 1rem;
+  align-items: center;
+`;
+
+const refStyle = styledComponent.div`
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin: 0;
+  border-radius: 50%;
+`;
 function background(url) {
   return `background: url('${url}');`;
 }
@@ -36,25 +83,123 @@ function background(url) {
 const listMovie = await movieBanner();
 
 class Banner extends Component {
+  addEvent = () => {
+
+  };
+
   render() {
     return bannerStyle(
       {
         class: "banner",
         children: [
           containerMovieStyle({
+            onResize: this.addEvent,
             class: "containerMovie",
             children: [
-              movieStyle({ class: "movie-banner" },'',background(listMovie[0])),
-              movieStyle({ class: "movie-banner" },'',background(listMovie[1])),
-              movieStyle({ class: "movie-banner" },'',background(listMovie[2])),
+              movieStyle(
+                {
+                  class: "movie-banner",
+                  id: "movie-banner-1",
+                  children: [
+                    buttonBannerPlayStyle(
+                      {
+                        children: [
+                          createChildren("i", { class: "icon-icon-play" }),
+                          createChildren("p", {}, "VER AHORA"),
+                        ],
+                      },
+                      ""
+                    ),
+                    buttonBannerAddStyle(
+                      {
+                        children: [
+                          createChildren("i", { class: "icon-icon-plus" }),
+                          createChildren("p", {}, "VER DESPUÉS"),
+                        ],
+                      },
+                      ""
+                    ),
+                  ],
+                },
+                "",
+                background(listMovie[0])
+              ),
+              movieStyle(
+                {
+                  class: "movie-banner",
+                  id: "movie-banner-2",
+                  children: [
+                    buttonBannerPlayStyle(
+                      {
+                        children: [
+                          createChildren("i", { class: "icon-icon-play" }),
+                          createChildren("p", {}, "VER AHORA"),
+                        ],
+                      },
+                      ""
+                    ),
+                    buttonBannerAddStyle(
+                      {
+                        children: [
+                          createChildren("i", { class: "icon-icon-plus" }),
+                          createChildren("p", {}, "VER DESPUÉS"),
+                        ],
+                      },
+                      ""
+                    ),
+                  ],
+                },
+                "",
+                background(listMovie[1])
+              ),
+              movieStyle(
+                {
+                  class: "movie-banner",
+                  id: "movie-banner-3",
+                  children: [
+                    buttonBannerPlayStyle(
+                      {
+                        children: [
+                          createChildren("i", { class: "icon-icon-play" }),
+                          createChildren("p", {}, "VER AHORA"),
+                        ],
+                      },
+                      ""
+                    ),
+                    buttonBannerAddStyle(
+                      {
+                        children: [
+                          createChildren("i", { class: "icon-icon-plus" }),
+                          createChildren("p", {}, "VER DESPUÉS"),
+                        ],
+                      },
+                      ""
+                    ),
+                  ],
+                },
+                "",
+                background(listMovie[2])
+              ),
             ],
           }),
-          createChildren("div", {
-            class: "selectedMovie",
+          selectedBannerStyle({
+            class: "selectedBanner",
             children: [
-              createChildren("a", {}, ""),
-              createChildren("a", {}, ""),
-              createChildren("a", {}, ""),
+              createChildren(
+                "a",
+                { href: "#movie-banner-1", children: refStyle({}, "") },
+                ""
+              ),
+              createChildren(
+                "a",
+                { href: "#movie-banner-2", children: refStyle({}, "") },
+                ""
+              ),
+              createChildren(
+                "a",
+                { href: "#movie-banner-3", children: refStyle({}, "") },
+                ""
+              ),
             ],
           }),
         ],

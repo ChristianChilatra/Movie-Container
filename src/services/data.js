@@ -17,11 +17,36 @@ export async function movieBanner() {
     Math.floor(Math.random() * (20 - 1) + 1)
   );
   const selectPathMovie = Array.from(
-    numberMovie,(x) => data.results[x]["backdrop_path"]);
+    numberMovie,
+    (x) => data.results[x]["backdrop_path"]
+  );
 
   const imgPathMovie = Array.from(selectPathMovie, (x) => URL + x);
+
+  listMovie();
 
   return imgPathMovie;
 }
 
+export async function listMovie() {
+  const URL = "https://image.tmdb.org/t/p/original";
 
+  const data = await buildData();
+
+  const movies = [];
+
+  for (const key in data["results"]) {
+    const movie = {
+      title: data["results"][key]["title"],
+      posterPath: data["results"][key]["poster_path"],
+      popularity: data["results"][key]["popularity"],
+      id: data["results"][key]["id"],
+    };
+
+    movies.push(movie);
+  }
+
+  const posterMovies = Array.from(movies, (x) => URL + x["posterPath"]);
+
+  return { movies, posterMovies };
+}

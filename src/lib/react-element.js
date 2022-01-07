@@ -14,7 +14,10 @@ export function createElement(type, props, content) {
       } else {
         render(props[key], $element);
       }
-    }else{
+    }if (key.startsWith("on")) {
+      const evento = key.replace('on','').toLowerCase()
+      $element.addEventListener("resize", props[key]);
+    } else {
       $element.setAttribute(key, props[key]);
     }
   }

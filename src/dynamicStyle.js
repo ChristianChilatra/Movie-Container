@@ -2,13 +2,22 @@ export function dynamicStyle(){
 
   function bannerStyle(){
 
-    const $bannerWidth = document.querySelector('.banner')
-    const $movieBannerWidth = document.querySelectorAll(".movie-banner");
+    const $banner = document.querySelector('.banner')
+    const $containerMovie = document.querySelector(".containerMovie");
+    const $movieBanner = document.querySelectorAll(".movie-banner");
 
-    $movieBannerWidth.forEach( $el =>{
-      $el.style.width = `${$bannerWidth.clientWidth}px`;
+    $movieBanner.forEach( $el =>{
+      $el.style.width = `${$banner.clientWidth}px`;
     })
 
+    window.addEventListener('resize', ()=>{
+      $movieBanner.forEach(($el) => {
+        $el.style.width = `${$banner.clientWidth}px`;
+      });
+      $banner.style.height = `${$movieBanner[0].clientHeight}px`;
+    })
+
+    $banner.style.height = `${$movieBanner[0].clientHeight}px`;
   }
 
   bannerStyle()

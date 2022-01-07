@@ -4,6 +4,7 @@ import styledComponent from "../lib/styled-components.js";
 import Header from './header.js';
 import Banner from './banner.js';
 import { buildData } from '../services/data.js';
+import ListMovie from './list-movie.js';
 
 const AppStyle = styledComponent.div`
   background: transparent;
@@ -18,10 +19,17 @@ const AppStyle = styledComponent.div`
 class App extends Component{
   render(){
     buildData()
-    return AppStyle({
-      class: 'wrapper',
-      children: [new Header().render(), new Banner().render(),]
-    },'')
+    return AppStyle(
+      {
+        class: "wrapper",
+        children: [
+          new Header().render(),
+          new Banner().render(),
+          new ListMovie().render(),
+        ],
+      },
+      ""
+    );
   }
 }
 

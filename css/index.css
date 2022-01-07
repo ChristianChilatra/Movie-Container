@@ -1,7 +1,7 @@
 @import url('./banner.css');
 
 :root {
-  --primary: #6f8199;
+  --primary: #FED941;
   --white: #fffffe;
   --grey: #a7a9be;
   --black: #000000;
@@ -27,8 +27,8 @@ body {
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('../font/icomoon/fonts/icomoon.eot?9dby1x');
-  src:  url('../font/icomoon/fonts/icomoon.eot?9dby1x#iefix') format('embedded-opentype'),
+  src: url('../font/icomoon/fonts/icomoon.eot?9dby1x');
+  src: url('../font/icomoon/fonts/icomoon.eot?9dby1x#iefix') format('embedded-opentype'),
     url('../font/icomoon/fonts/icomoon.ttf?9dby1x') format('truetype'),
     url('../font/icomoon/fonts/icomoon.woff?9dby1x') format('woff'),
     url('../font/icomoon/fonts/icomoon.svg?9dby1x#icomoon') format('svg');
@@ -56,40 +56,49 @@ body {
   content: "\e900";
   color: #fffffe;
 }
+
 .icon-icon-bell .path1:before {
   content: "\e901";
   color: rgb(255, 255, 254);
 }
+
 .icon-icon-bell .path2:before {
   content: "\e902";
   margin-left: -1em;
   color: rgb(255, 73, 73);
 }
+
 .icon-icon-bell .path3:before {
   content: "\e903";
   margin-left: -1em;
   color: rgb(255, 255, 254);
 }
+
 .icon-icon-close:before {
   content: "\e904";
   color: #fffffe;
 }
+
 .icon-icon-hamburger:before {
   content: "\e905";
   color: #fffffe;
 }
+
 .icon-icon-home:before {
   content: "\e906";
   color: #fffffe;
 }
+
 .icon-icon-play:before {
   content: "\e907";
-  color: #fffffe;
+  color: black;
 }
+
 .icon-icon-plus:before {
   content: "\e908";
-  color: #fffffe;
+  color: #FED941;
 }
+
 .icon-icon-search:before {
   content: "\e909";
   color: black;

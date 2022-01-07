@@ -1,6 +1,6 @@
 import { createElement } from "./react-element.js";
 
-const container = ["header", "div","img", "h1", "h2", "nav", "input","ul","li","a","form","i"];
+const container = ["header", "div","img", "h1", "h2", "nav", "input","ul","li","a","form","i","section","main"];
 
 const styledComponent = {};
 

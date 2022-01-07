@@ -11,7 +11,6 @@ const headerStyle = styledComponent.header`
   justify-content: space-around;
   align-items: center;
   gap: 3rem;
-  border: 1px solid red;
 `;
 
 

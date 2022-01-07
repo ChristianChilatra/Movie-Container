@@ -20,7 +20,7 @@ const containerMovieStyle = styledComponent.div`
   display:grid;
   grid-template-columns: repeat(auto-fill, 13.75rem);
   grid-template-rows: repeat(auto-fill, 20.625rem);
-  grid-gap: 1rem:
+  gap: 1rem:
 `;
 
 const { movies, posterMovies } = await listMovie();

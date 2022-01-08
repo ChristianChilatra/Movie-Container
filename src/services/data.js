@@ -3,9 +3,8 @@ import API from "./api.js";
 export async function buildData(page = 1) {
   const URL = new API("7b6af2d10187dac2f4a78feca90ed1b7");
 
-  console.log(URL.discoverMovie(page));
-
   const response = await fetch(URL.discoverMovie(page));
+
   const data = await response.json();
 
   return data;
@@ -24,8 +23,6 @@ export async function movieBanner() {
   );
 
   const imgPathMovie = Array.from(selectPathMovie, (x) => URL + x);
-
-  listMovie();
 
   return imgPathMovie;
 }

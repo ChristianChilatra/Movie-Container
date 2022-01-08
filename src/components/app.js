@@ -1,10 +1,9 @@
-import {Component} from '../lib/react.js'
-import { createElement, createChildren } from '../lib/react-element.js'
+import { Component } from "../lib/react.js";
+import { createElement, createChildren } from "../lib/react-element.js";
 import styledComponent from "../lib/styled-components.js";
-import Header from './header.js';
-import Banner from './banner.js';
-import { buildData } from '../services/data.js';
-import ListMovie from './list-movie.js';
+import Header from "./header.js";
+import Banner from "./banner.js";
+import ListMovie from "./list-movie.js";
 
 const AppStyle = styledComponent.div`
   background: transparent;
@@ -20,12 +19,20 @@ const titleStyle = styledComponent.h1`
   font: var(--headline1);
   margin: 0;
 `;
-class App extends Component{
-  async render(){
 
-    buildData()
+const containerMovieStyle = styledComponent.div`
+  inline-size: 100%;
+  block-size: auto;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, 13.75rem);
+  grid-template-rows: repeat(auto-fill, 20.625rem);
+  grid-gap: 1rem;
+  justify-content: center;
+`;
+class App extends Component {
 
-    let page = 1
+
+  async render() {
 
     return createElement("body", {
       children: [
@@ -36,9 +43,16 @@ class App extends Component{
             children: [
               new Banner().render(),
               titleStyle({ class: "Title Filter" }, "Dinamic"),
-              await new ListMovie({ page: page }).render(),
-              await new ListMovie({ page: ++page }).render(),
-              await new ListMovie({ page: ++page }).render(),
+              containerMovieStyle(
+                {
+                  class: "containerMovieStyle",
+                  children: [
+                    ...(await new ListMovie({ page: 1 }).render()),
+                  ],
+                },
+                ""
+              ),
+              createElement("div", { class: "colaider" }, ""),
             ],
           },
           ""
@@ -48,4 +62,4 @@ class App extends Component{
   }
 }
 
-export default App
+export default App;

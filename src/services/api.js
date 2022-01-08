@@ -6,7 +6,7 @@ class API{
   baseAPI = 'https://api.themoviedb.org/3/'
 
   discoverMovie(page){
-    return `${this.baseAPI}discover/movie/?api_key=${this.KEY_API}&page=${page}`;
+    return `${this.baseAPI}discover/movie?api_key=${this.KEY_API}&page=${page}`;
   }
 
 }

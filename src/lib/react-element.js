@@ -9,12 +9,12 @@ export function createElement(type, props, content) {
     if(key === 'children'){
       if (Array.isArray(props[key])) {
         props[key].forEach((el) => {
-          render(el, $element);
+            render(el, $element);
         });
       } else {
         render(props[key], $element);
       }
-    }if (key.startsWith("on")) {
+    }else if (key.startsWith("on")) {
       const evento = key.replace('on','').toLowerCase()
       $element.addEventListener("resize", props[key]);
     } else {

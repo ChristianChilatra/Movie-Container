@@ -1,3 +1,7 @@
+.banner {
+  block-size: 21rem;
+}
+
 .containerMovie {
   inline-size: 110%;
   block-size: 20rem;
@@ -25,10 +29,13 @@
 
 .selectedBanner a:hover div {
   background: var(--white);
-  justify-content: center;
 }
 
 @media screen and (min-width: 1200px) {
+  .banner {
+    block-size: 31rem;
+  }
+
   .containerMovie {
     inline-size: 105%;
     block-size: 30rem;

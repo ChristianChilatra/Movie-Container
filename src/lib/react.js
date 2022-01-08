@@ -1,6 +1,7 @@
-class Component{
-  constructor(props){
-    this.props = props
+class Component {
+  constructor(props, state) {
+    this.props = props;
+    this.state = state;
   }
 }
 

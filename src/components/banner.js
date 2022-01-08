@@ -83,9 +83,8 @@ function background(url) {
 const listMovie = await movieBanner();
 
 class Banner extends Component {
-  addEvent = () => {
 
-  };
+  addEvent = () => {};
 
   render() {
     return bannerStyle(

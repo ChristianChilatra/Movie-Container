@@ -23,6 +23,7 @@ body {
   background-color: var(--black);
   font: var(--headline1);
   margin: 0;
+
 }
 
 @font-face {
@@ -79,27 +80,32 @@ body {
   color: #fffffe;
 }
 
-.icon-icon-hamburger:before {
+.icon-icon-fav:before {
   content: "\e905";
   color: #fffffe;
 }
 
-.icon-icon-home:before {
+.icon-icon-hamburger:before {
   content: "\e906";
   color: #fffffe;
 }
 
-.icon-icon-play:before {
+.icon-icon-home:before {
   content: "\e907";
-  color: black;
+  color: #fffffe;
+}
+
+.icon-icon-play:before {
+  content: "\e908";
+  color: #fffffe;
 }
 
 .icon-icon-plus:before {
-  content: "\e908";
-  color: #FED941;
+  content: "\e909";
+  color: #fffffe;
 }
 
 .icon-icon-search:before {
-  content: "\e909";
-  color: black;
+  content: "\e90a";
+  color: #fffffe;
 }

@@ -1,9 +1,9 @@
 import API from "./api.js";
 
-export async function buildData() {
+export async function buildData(page = 1) {
   const URL = new API("7b6af2d10187dac2f4a78feca90ed1b7");
 
-  const response = await fetch(URL.discoverMovie);
+  const response = await fetch(URL.discoverMovie(page));
   const data = await response.json();
 
   return data;
@@ -28,10 +28,10 @@ export async function movieBanner() {
   return imgPathMovie;
 }
 
-export async function listMovie() {
+export async function listMovie(page) {
   const URL = "https://image.tmdb.org/t/p/original";
 
-  const data = await buildData();
+  const data = await buildData(page);
 
   const movies = [];
 
@@ -39,7 +39,7 @@ export async function listMovie() {
     const movie = {
       title: data["results"][key]["title"],
       posterPath: data["results"][key]["poster_path"],
-      popularity: data["results"][key]["popularity"],
+      average: data["results"][key]["vote_average"],
       id: data["results"][key]["id"],
     };
 

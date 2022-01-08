@@ -6,11 +6,15 @@ import styledComponent from "../lib/styled-components.js";
 const headerStyle = styledComponent.header`
   inline-size: auto;
   block-size: 7rem;
-  margin: 0;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 3rem;
+  background: var(--black);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
 `;
 
 

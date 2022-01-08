@@ -4,13 +4,8 @@ import styledComponent from "../lib/styled-components.js";
 import { listMovie, movieBanner } from "../services/data.js";
 import Movie from "./movie.js";
 
-
 const wrapperMoviesStyle = styledComponent.main`
   inline-size: 100%;
-`;
-const titleStyle = styledComponent.h1`
-  font: var(--headline1);
-  margin: 0;
 `;
 const containerMovieStyle = styledComponent.div`
   inline-size: 100%;
@@ -22,12 +17,14 @@ const containerMovieStyle = styledComponent.div`
   justify-content: center;
 `;
 
-const { movies, posterMovies } = await listMovie();
-
 class ListMovie extends Component {
-  render() {
 
-    const listMovie = Array.from(
+  async render() {
+
+    const {page} = this.props
+    const { movies, posterMovies } = await listMovie(page);
+
+    const pageMovie = Array.from(
       movies,
       (x, index) =>
         new Movie({
@@ -41,11 +38,10 @@ class ListMovie extends Component {
       {
         class: "wrapperMain",
         children: [
-          titleStyle({ class: "Title Filter" }, "Dinamic"),
           containerMovieStyle(
             {
               class: "containerMovieStyle",
-              children: listMovie,
+              children: pageMovie,
             },
             ""
           ),

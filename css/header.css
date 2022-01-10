@@ -2,9 +2,10 @@
   display: none;
 }
 
-form {
+.search {
   display: none;
 }
+
 
 .icons-mobile {
   display: block;
@@ -20,7 +21,7 @@ form {
     display: none;
   }
 
-  form {
+  .search {
     display: flex;
   }
 

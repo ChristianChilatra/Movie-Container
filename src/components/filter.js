@@ -39,6 +39,11 @@ const formStyle = styledComponent.form`
   inline-size: 33rem;
   min-width: 9rem;
 `;
+const formMobileStyle = styledComponent.form`
+  inline-size: 33rem;
+  min-width: 9rem;
+  display:flex;
+`;
 const inputSearchStyle = styledComponent.input`
   border-radius: 8px 0px 0px 8px;
   border: 1px solid #FED941;
@@ -164,7 +169,7 @@ class Filter extends Component {
     const $widthSreen = window.screen.width;
 
     if ($widthSreen < 1200 && !this.isShowMobile) {
-      $form.style.display = "block";
+      $form.style.display = "flex";
       this.isShowMobile = true;
     } else {
       $form.style.display = "none";
@@ -273,6 +278,37 @@ class Filter extends Component {
 
   renderSearch() {
     return formStyle({
+      class: "search",
+      onSubmit: this.eventSubmit,
+      children: [
+        inputSearchStyle(
+          {
+            type: "search",
+            name: "search",
+            id: "search",
+            placeholder: "Busca tu Pelicula",
+          },
+          ""
+        ),
+        containerButtomStyle(
+          {
+            class: "containerButtom",
+            children: [
+              inputButtomStyle(
+                { type: "submit", value: "", name: "submit" },
+                ""
+              ),
+              iconSearchStyle({ class: "icon-icon-search" }, ""),
+            ],
+          },
+          ""
+        ),
+      ],
+    });
+  }
+  renderSearchMobile() {
+    return formMobileStyle({
+      class: "searchMobile",
       onSubmit: this.eventSubmit,
       children: [
         inputSearchStyle(

@@ -18,11 +18,13 @@ const headerStyle = styledComponent.header`
 `;
 const searchMobileStyle = styledComponent.div`
   position: absolute;
-  background: red;
+  background: var(--black);
   inline-size: 100%;
   block-size: 7rem;
   inset-block-start: 0;
   display: none;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 
@@ -44,7 +46,13 @@ class Header extends Component {
           ),
           new Filter(false).renderNav(),
           new Filter().renderSearch(),
-          searchMobileStyle({ class: "containerSearchMobile" }, ""),
+          searchMobileStyle(
+            {
+              class: "containerSearchMobile",
+              children: new Filter().renderSearchMobile(),
+            },
+            ""
+          ),
         ],
       },
       ""

@@ -1,6 +1,6 @@
 .movie {
-  inline-size: 10rem;
-  block-size: 15rem;
+  inline-size: 8rem;
+  block-size: 12rem;
 }
 
 @media screen and (min-width: 1200px) {

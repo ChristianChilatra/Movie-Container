@@ -1,9 +1,8 @@
 import ListMovie from "../components/list-movie.js";
-import Filter from "../components/filter.js"
 
 let pageLoad = 1;
 
-export async function scrollInfinity(filter = '') {
+export async function scrollInfinity(filter, query) {
   const $listMovie = document.querySelector(".containerMovieStyle");
   const $button = document.querySelectorAll(".filter");
 

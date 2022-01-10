@@ -23,8 +23,6 @@ const containerMovieStyle = styledComponent.div`
   inline-size: 100%;
   block-size: auto;
   display:grid;
-  grid-template-columns: repeat(auto-fill, 13.75rem);
-  grid-template-rows: repeat(auto-fill, 20.625rem);
   grid-gap: 1rem;
   justify-content: center;
 `;
@@ -41,7 +39,7 @@ class App extends Component {
             class: "wrapper",
             children: [
               new Banner().render(),
-              titleStyle({ class: "Title Filter" }, "Dinamic"),
+              titleStyle({ class: "titleFilter" }, ""),
               containerMovieStyle(
                 {
                   class: "containerMovieStyle",

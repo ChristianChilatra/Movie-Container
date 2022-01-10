@@ -5,8 +5,6 @@ import styledComponent from "../lib/styled-components.js";
 
 
 const posterStyle = styledComponent.div`
-  inline-size: auto;
-  block-size: 20.625rem;
   background-size: cover;
   position:relative;
   border-radius: 1rem;
@@ -37,13 +35,8 @@ class Movie extends Component {
   render() {
     const {title, average, poster} = this.props
 
-    return createChildren(
-      "div",
-      {
-        class: "container-movie",
-        children: [
-          posterStyle(
-            {
+    return posterStyle(
+            {class: "movie",
               children: averageStyle(
                 {
                   children: [
@@ -57,12 +50,7 @@ class Movie extends Component {
             },
             "",
             background(poster)
-          ),
-        ],
-      },
-      ""
-    );
-
+          )
   }
 }
 

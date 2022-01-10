@@ -1,0 +1,11 @@
+.movie {
+  inline-size: 10rem;
+  block-size: 15rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .movie {
+    inline-size: 18rem;
+    block-size: 28rem;
+  }
+}

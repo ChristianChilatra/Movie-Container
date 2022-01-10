@@ -2,17 +2,19 @@ import { Component } from "../lib/react.js";
 import styledComponent from "../lib/styled-components.js";
 import ListMovie from "./list-movie.js";
 import { scrollInfinity } from "../utils/scroll-infinity.js";
+import { createChildren } from "../lib/react-element.js";
 
 const navStyle = styledComponent.nav`
   inline-size: auto;
   block-size: 30px;
   margin: 0;
   justify-content: space-between;
+  align-items:center;
+  display: flex;
 `;
 
 const ulStyle = styledComponent.ul`
   margin: 0;
-  display:flex;
   list-style: none;
   gap: 3rem;
   padding: 0;
@@ -34,7 +36,6 @@ const buttomStyle = styledComponent.button`
   border: 0;
 `;
 const formStyle = styledComponent.form`
-  display: flex;
   inline-size: 33rem;
   min-width: 9rem;
 `;
@@ -73,16 +74,37 @@ const iconSearchStyle = styledComponent.i`
   font-size: 1.25rem;
 `;
 
-class Filter extends Component {
+const containerButtonMobileStyle = styledComponent.div`
+  inset-inline-start: 50px;
+  inset-block-start: 32px;
+  display:flex;
+  gap: 2rem;
+`;
 
+const buttonMobileStyle = styledComponent.button`
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+`;
+
+const iconMobileStyle = styledComponent.i`
+  inset-inline-start: 20px;
+  inset-block-start: 12px;
+  font-size: 2.5rem;
+`;
+
+class Filter extends Component {
   eventAll = async () => {
     const page = 1;
 
     const $listMovie = document.querySelector(".containerMovieStyle");
+    const $title = document.querySelector(".titleFilter");
     const listMovie = await new ListMovie({
-      page: page,
+      page,
     }).render();
 
+    $title.textContent = "Populares";
     $listMovie.innerHTML = "";
 
     listMovie.forEach(($el) => {
@@ -96,11 +118,13 @@ class Filter extends Component {
     const filter = "desc";
 
     const $listMovie = document.querySelector(".containerMovieStyle");
+    const $title = document.querySelector(".titleFilter");
     const listMovie = await new ListMovie({
-      page: page,
-      filter: filter,
+      page,
+      filter,
     }).render();
 
+    $title.textContent = "Más Valoradas";
     $listMovie.innerHTML = "";
 
     listMovie.forEach(($el) => {
@@ -115,11 +139,13 @@ class Filter extends Component {
     const filter = "asc";
 
     const $listMovie = document.querySelector(".containerMovieStyle");
+    const $title = document.querySelector(".titleFilter");
     const listMovie = await new ListMovie({
-      page: page,
-      filter: filter,
+      page,
+      filter,
     }).render();
 
+    $title.textContent = "Menos Valoradas";
     $listMovie.innerHTML = "";
 
     listMovie.forEach(($el) => {
@@ -133,13 +159,36 @@ class Filter extends Component {
     return navStyle(
       {
         children: [
+          containerButtonMobileStyle(
+            {
+              children: [
+                buttonMobileStyle(
+                  {class: "icon-mobile",
+                    children: iconMobileStyle({
+                      class: "icon-icon-search mobile",
+                    }),
+                  },
+                  ""
+                ),
+                buttonMobileStyle(
+                  {class: "icon-mobile",
+                    children: iconMobileStyle({
+                      class: "icon-icon-hamburger mobile",
+                    }),
+                  },
+                  ""
+                ),
+              ],
+            },
+            ""
+          ),
           ulStyle(
             {
+              class: "list-nav",
               children: [
                 liStyle({
                   children: buttomStyle(
-                    { class: "all filter",
-                    onClick: this.eventAll },
+                    { class: "all filter", onClick: this.eventAll },
                     "Todas"
                   ),
                 }),
@@ -171,13 +220,40 @@ class Filter extends Component {
     );
   }
 
-
-  eventSubmit = (event)=>{
+  eventSubmit = async (event) => {
     event.preventDefault();
-  }
+    const formData = new FormData(event.target);
+    const query = formData.get("search");
+
+    const page = 1;
+    const filter = "search";
+
+    const $listMovie = document.querySelector(".containerMovieStyle");
+    const $title = document.querySelector(".titleFilter");
+
+    if (query === "") {
+      this.eventAll();
+    } else {
+      const listMovie = await new ListMovie({
+        page,
+        filter,
+        query,
+      }).render();
+
+      $title.textContent = `"${query}"`;
+      $listMovie.innerHTML = "";
+
+      listMovie.forEach(($el) => {
+        $listMovie.appendChild($el);
+      });
+
+      scrollInfinity(filter, query);
+    }
+  };
 
   renderSearch() {
     return formStyle({
+      onSubmit: this.eventSubmit,
       children: [
         inputSearchStyle(
           {
@@ -185,7 +261,6 @@ class Filter extends Component {
             name: "search",
             id: "search",
             placeholder: "Busca tu Pelicula",
-            for: "submit",
           },
           ""
         ),
@@ -194,7 +269,7 @@ class Filter extends Component {
             class: "containerButtom",
             children: [
               inputButtomStyle(
-                { type: "submit", value: "", name: "submit", onSubmit: this.eventSubmit },
+                { type: "submit", value: "", name: "submit" },
                 ""
               ),
               iconSearchStyle({ class: "icon-icon-search" }, ""),

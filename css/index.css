@@ -1,5 +1,7 @@
 @import url('./banner.css');
 @import url('./header.css');
+@import url('./movie.css');
+@import url('./main.css');
 
 :root {
   --primary: #FED941;

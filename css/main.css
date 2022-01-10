@@ -1,0 +1,11 @@
+.containerMovieStyle {
+  grid-template-columns: repeat(auto-fill, 10rem);
+  grid-template-rows: repeat(auto-fill, 15rem);
+}
+
+@media screen and (min-width: 1200px) {
+  .containerMovieStyle {
+    grid-template-columns: repeat(auto-fill, 18rem);
+    grid-template-rows: repeat(auto-fill, 28rem);
+  }
+}

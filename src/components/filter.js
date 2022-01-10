@@ -91,10 +91,14 @@ const buttonMobileStyle = styledComponent.button`
 const iconMobileStyle = styledComponent.i`
   inset-inline-start: 20px;
   inset-block-start: 12px;
-  font-size: 2.5rem;
+  font-size: 1.5em;
 `;
 
 class Filter extends Component {
+  constructor(isShowMobile) {
+    super(), (this.isShowMobile = isShowMobile);
+  }
+
   eventAll = async () => {
     const page = 1;
 
@@ -155,6 +159,19 @@ class Filter extends Component {
     scrollInfinity(filter);
   };
 
+  eventShowSearch = () => {
+    const $form = document.querySelector(".containerSearchMobile");
+    const $widthSreen = window.screen.width;
+
+    if ($widthSreen < 1200 && !this.isShowMobile) {
+      $form.style.display = "block";
+      this.isShowMobile = true;
+    } else {
+      $form.style.display = "none";
+      this.isShowMobile = false;
+    }
+  };
+
   renderNav() {
     return navStyle(
       {
@@ -163,15 +180,18 @@ class Filter extends Component {
             {
               children: [
                 buttonMobileStyle(
-                  {class: "icon-mobile",
+                  {
+                    class: "icons-mobile",
                     children: iconMobileStyle({
                       class: "icon-icon-search mobile",
+                      onClick: this.eventShowSearch,
                     }),
                   },
                   ""
                 ),
                 buttonMobileStyle(
-                  {class: "icon-mobile",
+                  {
+                    class: "icons-mobile",
                     children: iconMobileStyle({
                       class: "icon-icon-hamburger mobile",
                     }),

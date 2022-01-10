@@ -5,7 +5,7 @@ import styledComponent from "../lib/styled-components.js";
 
 const headerStyle = styledComponent.header`
   inline-size: auto;
-  block-size: 7rem;
+  block-size: 5rem;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-around;
@@ -15,6 +15,14 @@ const headerStyle = styledComponent.header`
   position: sticky;
   inset-block-start: 0;
   z-index: 1;
+`;
+const searchMobileStyle = styledComponent.div`
+  position: absolute;
+  background: red;
+  inline-size: 100%;
+  block-size: 7rem;
+  inset-block-start: 0;
+  display: none;
 `;
 
 
@@ -29,13 +37,14 @@ class Header extends Component {
             {
               class: "logo",
               src: "../../icon/clapperboard.png",
-              with: 106,
-              height: 106,
+              with: 80,
+              height: 80,
             },
             ""
           ),
-          new Filter().renderNav(),
+          new Filter(false).renderNav(),
           new Filter().renderSearch(),
+          searchMobileStyle({ class: "containerSearchMobile" }, ""),
         ],
       },
       ""

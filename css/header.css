@@ -6,9 +6,8 @@ form {
   display: none;
 }
 
-.icon-mobile {
+.icons-mobile {
   display: block;
-
 }
 
 @media screen and (min-width: 1200px) {
@@ -17,7 +16,7 @@ form {
     display: flex;
   }
 
-  .icon-mobile {
+  .icons-mobile {
     display: none;
   }
 

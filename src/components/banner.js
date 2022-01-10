@@ -29,9 +29,9 @@ const movieStyle = styledComponent.div`
   background-position-x: center;
 `;
 
-const buttonBannerPlayStyle = styledComponent.div`
+const buttonBannerPlayStyle = styledComponent.button`
   grid-area: play;
-  inline-size: 12.18rem;
+  inline-size: auto;
   block-size: 3rem;
   border-radius: 0.25rem;
   background: var(--primary);
@@ -45,9 +45,9 @@ const buttonBannerPlayStyle = styledComponent.div`
   box-sizing: content-box;
   cursor: pointer;
 `;
-const buttonBannerAddStyle = styledComponent.div`
+const buttonBannerAddStyle = styledComponent.button`
   grid-area: add;
-  inline-size: 12.18rem;
+  inline-size: auto;
   block-size: 3rem;
   border-radius: 0.25rem;
   padding: 0 2rem;

@@ -1,11 +1,12 @@
 import { Component } from "../lib/react.js";
 import styledComponent from "../lib/styled-components.js";
+import ListMovie from "./list-movie.js";
+import { scrollInfinity } from "../utils/scroll-infinity.js";
 
 const navStyle = styledComponent.nav`
   inline-size: auto;
   block-size: 30px;
   margin: 0;
-  display: flex;
   justify-content: space-between;
 `;
 
@@ -22,10 +23,15 @@ const liStyle = styledComponent.li`
   display: flex;
   align-items: center;
 `;
-const aStyle = styledComponent.a`
+const buttomStyle = styledComponent.button`
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: var(--button)
   text-decoration: none;
   user-select: none;
   color: var(--white);
+  border: 0;
 `;
 const formStyle = styledComponent.form`
   display: flex;
@@ -68,6 +74,61 @@ const iconSearchStyle = styledComponent.i`
 `;
 
 class Filter extends Component {
+
+  eventAll = async () => {
+    const page = 1;
+
+    const $listMovie = document.querySelector(".containerMovieStyle");
+    const listMovie = await new ListMovie({
+      page: page,
+    }).render();
+
+    $listMovie.innerHTML = "";
+
+    listMovie.forEach(($el) => {
+      $listMovie.appendChild($el);
+    });
+    scrollInfinity();
+  };
+
+  eventMostValue = async () => {
+    const page = 1;
+    const filter = "desc";
+
+    const $listMovie = document.querySelector(".containerMovieStyle");
+    const listMovie = await new ListMovie({
+      page: page,
+      filter: filter,
+    }).render();
+
+    $listMovie.innerHTML = "";
+
+    listMovie.forEach(($el) => {
+      $listMovie.appendChild($el);
+    });
+
+    scrollInfinity(filter);
+  };
+
+  eventLeastValue = async () => {
+    const page = 1;
+    const filter = "asc";
+
+    const $listMovie = document.querySelector(".containerMovieStyle");
+    const listMovie = await new ListMovie({
+      page: page,
+      filter: filter,
+    }).render();
+
+    $listMovie.innerHTML = "";
+
+    listMovie.forEach(($el) => {
+      $listMovie.appendChild($el);
+    });
+
+    scrollInfinity(filter);
+  };
+
   renderNav() {
     return navStyle(
       {
@@ -75,10 +136,30 @@ class Filter extends Component {
           ulStyle(
             {
               children: [
-                liStyle({ children: aStyle({ href: "#" }, "Todas") }),
-                liStyle({ children: aStyle({ href: "#" }, "Más valoradas") }),
                 liStyle({
-                  children: aStyle({ href: "#" }, "Menos valoradas"),
+                  children: buttomStyle(
+                    { class: "all filter",
+                    onClick: this.eventAll },
+                    "Todas"
+                  ),
+                }),
+                liStyle({
+                  children: buttomStyle(
+                    {
+                      class: "most-value filter",
+                      onClick: this.eventMostValue,
+                    },
+                    "Más valoradas"
+                  ),
+                }),
+                liStyle({
+                  children: buttomStyle(
+                    {
+                      class: "least-value filter",
+                      onClick: this.eventLeastValue,
+                    },
+                    "Menos valoradas"
+                  ),
                 }),
               ],
             },
@@ -89,6 +170,12 @@ class Filter extends Component {
       ""
     );
   }
+
+
+  eventSubmit = (event)=>{
+    event.preventDefault();
+  }
+
   renderSearch() {
     return formStyle({
       children: [
@@ -98,6 +185,7 @@ class Filter extends Component {
             name: "search",
             id: "search",
             placeholder: "Busca tu Pelicula",
+            for: "submit",
           },
           ""
         ),
@@ -105,7 +193,10 @@ class Filter extends Component {
           {
             class: "containerButtom",
             children: [
-              inputButtomStyle({ type: "submit", value: "" }, ""),
+              inputButtomStyle(
+                { type: "submit", value: "", name: "submit", onSubmit: this.eventSubmit },
+                ""
+              ),
               iconSearchStyle({ class: "icon-icon-search" }, ""),
             ],
           },

@@ -7,8 +7,8 @@ class ListMovie extends Component {
 
   async render() {
 
-    const {page} = this.props
-    const { movies, posterMovies } = await listMovie(page);
+    const {page, filter} = this.props
+    const { movies, posterMovies } = await listMovie(page, filter);
 
     const pageMovie = Array.from(movies, (x, index) =>
       createElement("movie", {

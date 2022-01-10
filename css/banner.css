@@ -3,7 +3,7 @@
 }
 
 .containerMovie {
-  inline-size: 110%;
+  inline-size: 100%;
   block-size: 20rem;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .movie-banner {
-  inline-size: 1000px;
+  inline-size: 85%;
   grid-template-columns: 1rem 16rem;
   grid-template-rows: auto 4rem 6rem;
   grid-template-areas: '. .''.play''. add';
@@ -42,6 +42,7 @@
   }
 
   .movie-banner {
+    inline-size: 100%;
     grid-template-columns: 1rem 16rem 16rem;
     grid-template-rows: auto 6rem;
     grid-template-areas: '. . .''. play add';

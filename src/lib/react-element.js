@@ -16,7 +16,7 @@ export function createElement(type, props, content) {
       }
     }else if (key.startsWith("on")) {
       const evento = key.replace('on','').toLowerCase()
-      $element.addEventListener("resize", props[key]);
+      $element.addEventListener(evento, props[key]);
     } else {
       $element.setAttribute(key, props[key]);
     }

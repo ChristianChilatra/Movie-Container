@@ -9,7 +9,6 @@ const AppStyle = styledComponent.div`
   background: transparent;
   inline-size: auto;
   block-size: 100%;
-  margin: 3rem 4.8rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;

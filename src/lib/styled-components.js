@@ -16,6 +16,7 @@ const container = [
   "section",
   "main",
   "p",
+  "button"
 ];
 
 const styledComponent = {};

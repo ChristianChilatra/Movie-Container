@@ -26,6 +26,7 @@ const movieStyle = styledComponent.div`
   border-radius: 8px;
   position: relative;
   display: grid;
+  background-position-x: center;
 `;
 
 const buttonBannerPlayStyle = styledComponent.div`
@@ -92,7 +93,6 @@ class Banner extends Component {
         class: "banner",
         children: [
           containerMovieStyle({
-            onResize: this.addEvent,
             class: "containerMovie",
             children: [
               movieStyle(

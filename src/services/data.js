@@ -1,9 +1,9 @@
 import API from "./api.js";
 
-export async function buildData(page = 1) {
+export async function buildData(page = 1, filter = '') {
   const URL = new API("7b6af2d10187dac2f4a78feca90ed1b7");
 
-  const response = await fetch(URL.discoverMovie(page));
+  const response = await fetch(URL.discoverMovie(page, filter));
 
   const data = await response.json();
 
@@ -27,10 +27,12 @@ export async function movieBanner() {
   return imgPathMovie;
 }
 
-export async function listMovie(page) {
+export async function listMovie(page, filter) {
+
+
   const URL = "https://image.tmdb.org/t/p/original";
 
-  const data = await buildData(page);
+  const data = await buildData(page, filter);
 
   const movies = [];
 

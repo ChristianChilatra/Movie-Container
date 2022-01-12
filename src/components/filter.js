@@ -388,8 +388,6 @@ class Filter extends Component {
 
   eventShowSearch = () => {
 
-    this.isInnerHeight = window.innerHeight
-
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $formSearch = document.querySelector(".search");
@@ -411,6 +409,11 @@ class Filter extends Component {
   };
 
   eventDynamicHeader = () => {
+
+    if (his.isInnerHeight == 0) {
+      this.isInnerHeight = window.innerHeight;
+    }
+
     const $formSearch = document.querySelector(".search");
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");

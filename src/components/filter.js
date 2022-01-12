@@ -432,7 +432,7 @@ class Filter extends Component {
     return buttonMobileStyle(
       {
         onClick: this.eventShowSearch,
-        onResize: this.eventDynamicHeader,
+        // onResize: this.eventDynamicHeader,
         class: "buttonSearchMobile",
         children: iconSearchMobileStyle(
           { class: "icon-icon-search-yellow", id: "search-mobile" },

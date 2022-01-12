@@ -143,10 +143,6 @@ const iconSearchMobileStyle = styledComponent.i`
 
 
 class Filter extends Component {
-  constructor(isShowMobile) {
-    super();
-    this.isShowMobile = isShowMobile;
-  }
 
   eventAll = async () => {
     const page = 1;
@@ -391,6 +387,7 @@ class Filter extends Component {
   }
 
   eventShowSearch = () => {
+
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $formSearch = document.querySelector(".search");
@@ -420,14 +417,14 @@ class Filter extends Component {
     if (window.screen.width > 1200) {
       $formSearch.style.display = "flex";
       $logo.style.display = "block";
+      $iconNavhMobile.style.display = "none";
     }
-    // else if (window.screen.width < 1200) {
-
-    //   $formSearch.style.display = "none";
-    //   $logo.style.display = "block";
-    //   $iconNavhMobile.style.display = "block";
-    //   $iconSearchMobile.className = "icon-icon-search-yellow";
-    // }
+    else if (window.screen.width < 1200 && window.screen.height == this.isInnerHeight) {
+      $formSearch.style.display = "none";
+      $logo.style.display = "block";
+      $iconNavhMobile.style.display = "block";
+      $iconSearchMobile.className = "icon-icon-search-yellow";
+    }
   };
 
   renderSearchMobile() {

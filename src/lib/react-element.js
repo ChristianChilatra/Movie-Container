@@ -16,7 +16,11 @@ export function createElement(type, props, content) {
       }
     }else if (key.startsWith("on")) {
       const evento = key.replace('on','').toLowerCase()
-      $element.addEventListener(evento, props[key]);
+      if (evento === "resize") {
+        window.addEventListener(evento, props[key]);
+      }else{
+        $element.addEventListener(evento, props[key]);
+      }
     } else {
       $element.setAttribute(key, props[key]);
     }

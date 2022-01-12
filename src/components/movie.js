@@ -17,6 +17,7 @@ const averageStyle = styledComponent.div`
   position: absolute;
   inset-block-start: 10%;
   font: var(--headline3);
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;

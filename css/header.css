@@ -1,4 +1,4 @@
-.list-nav {
+.nav {
   display: none;
 }
 
@@ -6,23 +6,21 @@
   display: none;
 }
 
-
-.icons-mobile {
-  display: block;
+.containerButtonsMobile{
+  display: flex;
 }
 
 @media screen and (min-width: 1200px) {
 
-  .list-nav {
+  .nav {
     display: flex;
-  }
-
-  .icons-mobile {
-    display: none;
   }
 
   .search {
     display: flex;
   }
 
+  .containerButtonsMobile {
+    display: none;
+  }
 }

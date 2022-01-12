@@ -70,6 +70,10 @@ body {
   content: "\e900";
   color: #fffffe;
 }
+.icon-icon-back-yellow:before {
+  content: "\e900";
+  color: var(--primary);
+}
 
 .icon-icon-bell .path1:before {
   content: "\e901";
@@ -92,6 +96,10 @@ body {
   content: "\e904";
   color: #fffffe;
 }
+.icon-icon-close-yellow:before {
+  content: "\e904";
+  color: var(--primary);
+}
 
 .icon-icon-fav:before {
   content: "\e905";
@@ -101,6 +109,10 @@ body {
 .icon-icon-hamburger:before {
   content: "\e906";
   color: #fffffe;
+}
+.icon-icon-hamburger-yellow:before {
+  content: "\e906";
+  color: var(--primary);
 }
 
 .icon-icon-home:before {
@@ -120,5 +132,10 @@ body {
 
 .icon-icon-search:before {
   content: "\e90a";
-  color: #fffffe;
+  color: black;
+}
+
+.icon-icon-search-yellow:before {
+  content: "\e90a";
+  color: var(--primary);
 }

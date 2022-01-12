@@ -16,17 +16,10 @@ const headerStyle = styledComponent.header`
   inset-block-start: 0;
   z-index: 1;
 `;
-const searchMobileStyle = styledComponent.div`
-  position: absolute;
-  background: var(--black);
-  inline-size: 100%;
-  block-size: 7rem;
-  inset-block-start: 0;
-  display: none;
-  justify-content: space-around;
-  align-items: center;
-`;
 
+const containerButtonsMobile = styledComponent.div`
+gap: 2rem;
+`
 
 class Header extends Component {
 
@@ -44,15 +37,18 @@ class Header extends Component {
             },
             ""
           ),
-          new Filter(false).renderNav(),
-          new Filter().renderSearch(),
-          searchMobileStyle(
+          new Filter().renderNav(),
+          containerButtonsMobile(
             {
-              class: "containerSearchMobile",
-              children: new Filter().renderSearchMobile(),
+              class: "containerButtonsMobile",
+              children: [
+                new Filter(false).renderSearchMobile(),
+                new Filter(false).renderNavMobile(),
+              ],
             },
             ""
           ),
+          new Filter().renderSearch(),
         ],
       },
       ""

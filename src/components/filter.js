@@ -3,6 +3,7 @@ import styledComponent from "../lib/styled-components.js";
 import ListMovie from "./list-movie.js";
 import { scrollInfinity } from "../utils/scroll-infinity.js";
 import { createChildren } from "../lib/react-element.js";
+import { dynamicStyle } from "../utils/dynamic-style.js";
 
 const navStyle = styledComponent.nav`
   inline-size: auto;
@@ -10,7 +11,6 @@ const navStyle = styledComponent.nav`
   margin: 0;
   justify-content: space-between;
   align-items:center;
-  display: flex;
 `;
 
 const ulStyle = styledComponent.ul`
@@ -18,6 +18,7 @@ const ulStyle = styledComponent.ul`
   list-style: none;
   gap: 3rem;
   padding: 0;
+  display:flex;
 `;
 const liStyle = styledComponent.li`
   margin: 0;
@@ -25,7 +26,7 @@ const liStyle = styledComponent.li`
   display: flex;
   align-items: center;
 `;
-const buttomStyle = styledComponent.button`
+const buttonFilterStyle = styledComponent.button`
   background: transparent;
   padding: 0;
   margin: 0;
@@ -34,15 +35,11 @@ const buttomStyle = styledComponent.button`
   user-select: none;
   color: var(--white);
   border: 0;
+  cursor: pointer;
 `;
 const formStyle = styledComponent.form`
   inline-size: 33rem;
   min-width: 9rem;
-`;
-const formMobileStyle = styledComponent.form`
-  inline-size: 33rem;
-  min-width: 9rem;
-  display:flex;
 `;
 const inputSearchStyle = styledComponent.input`
   border-radius: 8px 0px 0px 8px;
@@ -78,30 +75,72 @@ const iconSearchStyle = styledComponent.i`
   inset-block-start: 12px;
   font-size: 1.25rem;
 `;
-
-const containerButtonMobileStyle = styledComponent.div`
-  inset-inline-start: 50px;
-  inset-block-start: 32px;
-  display:flex;
-  gap: 2rem;
-`;
-
-const buttonMobileStyle = styledComponent.button`
+const navMobileStyle = styledComponent.nav`
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 100vh;
   background: transparent;
-  border: 0;
+  backdrop-filter: blur(80px);
+  margin: 0;
+  display: none;
+  justify-content: center;
+  padding-block-start: 10rem;
+`;
+const ulMobileStyle = styledComponent.ul`
+  margin: 0;
+  list-style: none;
+  gap: 3rem;
+  padding: 0;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+`;
+const liMobileStyle = styledComponent.li`
+  margin: 0;
+  font: var(--body2-bold);
+  display: flex;
+  align-items: center;
+`;
+const buttonFilterMobileStyle = styledComponent.button`
+  background: transparent;
   padding: 0;
   margin: 0;
+  font: var(--button)
+  text-decoration: none;
+  user-select: none;
+  color: var(--primary);
+  border: 0;
+  cursor: pointer;
+`;
+const buttomMobileStyle = styledComponent.button`
+  block-size: 2rem;
+  inline-size: 2rem;
+  margin: 0;
+  border: 0;
+  position: relative;
+  cursor: pointer;
+  box-sizing: content-box;
+  background: transparent;
+  justify-content: space-between;
+  align-items:center;
+`;
+const iconNavMobileStyle = styledComponent.i`
+  font-size: 2rem;
+  position: absolute;
+  inset-block-start:0;
+  z-index: 1;
+`;
+const iconSearchMobileStyle = styledComponent.i`
+  font-size: 2rem;
 `;
 
-const iconMobileStyle = styledComponent.i`
-  inset-inline-start: 20px;
-  inset-block-start: 12px;
-  font-size: 1.5em;
-`;
 
 class Filter extends Component {
   constructor(isShowMobile) {
-    super(), (this.isShowMobile = isShowMobile);
+    super();
+    this.isShowMobile = isShowMobile;
   }
 
   eventAll = async () => {
@@ -164,61 +203,23 @@ class Filter extends Component {
     scrollInfinity(filter);
   };
 
-  eventShowSearch = () => {
-    const $form = document.querySelector(".containerSearchMobile");
-    const $widthSreen = window.screen.width;
-
-    if ($widthSreen < 1200 && !this.isShowMobile) {
-      $form.style.display = "flex";
-      this.isShowMobile = true;
-    } else {
-      $form.style.display = "none";
-      this.isShowMobile = false;
-    }
-  };
-
   renderNav() {
     return navStyle(
       {
+        class: "nav",
         children: [
-          containerButtonMobileStyle(
-            {
-              children: [
-                buttonMobileStyle(
-                  {
-                    class: "icons-mobile",
-                    children: iconMobileStyle({
-                      class: "icon-icon-search mobile",
-                      onClick: this.eventShowSearch,
-                    }),
-                  },
-                  ""
-                ),
-                buttonMobileStyle(
-                  {
-                    class: "icons-mobile",
-                    children: iconMobileStyle({
-                      class: "icon-icon-hamburger mobile",
-                    }),
-                  },
-                  ""
-                ),
-              ],
-            },
-            ""
-          ),
           ulStyle(
             {
               class: "list-nav",
               children: [
-                liStyle({
-                  children: buttomStyle(
+                liMobileStyle({
+                  children: buttonFilterStyle(
                     { class: "all filter", onClick: this.eventAll },
                     "Todas"
                   ),
                 }),
-                liStyle({
-                  children: buttomStyle(
+                liMobileStyle({
+                  children: buttonFilterStyle(
                     {
                       class: "most-value filter",
                       onClick: this.eventMostValue,
@@ -226,8 +227,8 @@ class Filter extends Component {
                     "Más valoradas"
                   ),
                 }),
-                liStyle({
-                  children: buttomStyle(
+                liMobileStyle({
+                  children: buttonFilterStyle(
                     {
                       class: "least-value filter",
                       onClick: this.eventLeastValue,
@@ -235,6 +236,83 @@ class Filter extends Component {
                     "Menos valoradas"
                   ),
                 }),
+              ],
+            },
+            ""
+          ),
+        ],
+      },
+      ""
+    );
+  }
+
+  eventShowNav = () => {
+    const $navMobile = document.querySelector(".nav-mobile");
+    const $iconNavhMobile = document.querySelector("#menu-mobile");
+
+    if(!this.isShowMobile){
+      $navMobile.style.display = "flex"
+    }
+
+    if (!this.isShowMobile) {
+      $navMobile.style.display = "flex";
+      $iconNavhMobile.className = "icon-icon-close-yellow";
+      this.isShowMobile = true;
+    } else {
+      $navMobile.style.display = "none";
+      $iconNavhMobile.className = "icon-icon-hamburger-yellow";
+      this.isShowMobile = false;
+    }
+
+  }
+
+  renderNavMobile() {
+    return buttomMobileStyle(
+      {
+        onClick: this.eventShowNav,
+        // onResize: this.eventDynamicHeader,
+        class: "buttomMobile",
+        children: [
+          iconNavMobileStyle(
+            { class: "icon-icon-hamburger-yellow", id: "menu-mobile" },
+            ""
+          ),
+          navMobileStyle(
+            {
+              class: "nav-mobile",
+              children: [
+                ulMobileStyle(
+                  {
+                    class: "list-nav",
+                    children: [
+                      liStyle({
+                        children: buttonFilterMobileStyle(
+                          { class: "all filter", onClick: this.eventAll },
+                          "Todas"
+                        ),
+                      }),
+                      liStyle({
+                        children: buttonFilterMobileStyle(
+                          {
+                            class: "most-value filter",
+                            onClick: this.eventMostValue,
+                          },
+                          "Más valoradas"
+                        ),
+                      }),
+                      liStyle({
+                        children: buttonFilterMobileStyle(
+                          {
+                            class: "least-value filter",
+                            onClick: this.eventLeastValue,
+                          },
+                          "Menos valoradas"
+                        ),
+                      }),
+                    ],
+                  },
+                  ""
+                ),
               ],
             },
             ""
@@ -306,35 +384,53 @@ class Filter extends Component {
       ],
     });
   }
+
+  eventShowSearch = () => {
+    const $logo = document.querySelector(".logo");
+    const $iconSearchMobile = document.querySelector("#search-mobile");
+    const $formSearch = document.querySelector(".search");
+
+    if (!this.isShowMobile) {
+      $formSearch.style.display = "flex";
+      $logo.style.display = "none";
+      $iconSearchMobile.className = "icon-icon-back-yellow";
+      this.isShowMobile = true;
+    } else {
+      $formSearch.style.display = "none";
+      $logo.style.display = "block";
+      $iconSearchMobile.className = "icon-icon-search-yellow";
+      this.isShowMobile = false;
+    }
+  };
+
+  eventDynamicHeader = () => {
+    const $formSearch = document.querySelector(".search");
+    const $logo = document.querySelector(".logo");
+    const $iconSearchMobile = document.querySelector("#search-mobile");
+
+    if (window.screen.width > 1200) {
+      $formSearch.style.display = "flex";
+      $logo.style.display = "block";
+    } else if (window.screen.width < 1200) {
+      $formSearch.style.display = "none";
+      $logo.style.display = "block";
+      $iconSearchMobile.className = "icon-icon-search-yellow";
+    }
+  };
+
   renderSearchMobile() {
-    return formMobileStyle({
-      class: "searchMobile",
-      onSubmit: this.eventSubmit,
-      children: [
-        inputSearchStyle(
-          {
-            type: "search",
-            name: "search",
-            id: "search",
-            placeholder: "Busca tu Pelicula",
-          },
+    return buttomMobileStyle(
+      {
+        onClick: this.eventShowSearch,
+        onResize: this.eventDynamicHeader,
+        class: "buttomMobile",
+        children: iconSearchMobileStyle(
+          { class: "icon-icon-search-yellow", id: "search-mobile" },
           ""
         ),
-        containerButtomStyle(
-          {
-            class: "containerButtom",
-            children: [
-              inputButtomStyle(
-                { type: "submit", value: "", name: "submit" },
-                ""
-              ),
-              iconSearchStyle({ class: "icon-icon-search" }, ""),
-            ],
-          },
-          ""
-        ),
-      ],
-    });
+      },
+      ""
+    );
   }
 }
 

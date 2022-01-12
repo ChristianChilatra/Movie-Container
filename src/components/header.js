@@ -42,8 +42,8 @@ class Header extends Component {
             {
               class: "containerButtonsMobile",
               children: [
-                new Filter(false).renderSearchMobile(),
-                new Filter(false).renderNavMobile(),
+                new Filter({isShowMobile :false, isInnerHeight: 0}).renderSearchMobile(),
+                new Filter({isShowMobile :false}).renderNavMobile(),
               ],
             },
             ""

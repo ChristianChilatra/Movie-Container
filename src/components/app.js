@@ -23,7 +23,7 @@ const containerMovieStyle = styledComponent.div`
   inline-size: 100%;
   block-size: auto;
   display:grid;
-  grid-gap: 1rem;
+  grid-gap: .5rem;
   justify-content: center;
 `;
 class App extends Component {

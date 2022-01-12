@@ -388,6 +388,8 @@ class Filter extends Component {
 
   eventShowSearch = () => {
 
+    this.isInnerHeight = window.innerHeight
+
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $formSearch = document.querySelector(".search");
@@ -413,6 +415,8 @@ class Filter extends Component {
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $iconNavhMobile = document.querySelector(".buttonNavMobile");
+
+    console.log(this.isInnerHeight);
 
     if (window.screen.width > 1200) {
       $formSearch.style.display = "flex";

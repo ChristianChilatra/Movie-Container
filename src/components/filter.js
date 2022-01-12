@@ -48,6 +48,9 @@ const inputSearchStyle = styledComponent.input`
   block-size: 2.75rem;
   outline: none;
   padding: 0 1rem 0 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 const containerButtomStyle = styledComponent.div`
   block-size: 2.75rem;
@@ -114,10 +117,11 @@ const buttonFilterMobileStyle = styledComponent.button`
   border: 0;
   cursor: pointer;
 `;
-const buttomMobileStyle = styledComponent.button`
+const buttonMobileStyle = styledComponent.button`
   block-size: 2rem;
   inline-size: 2rem;
   margin: 0;
+  padding: 0;
   border: 0;
   position: relative;
   cursor: pointer;
@@ -130,6 +134,7 @@ const iconNavMobileStyle = styledComponent.i`
   font-size: 2rem;
   position: absolute;
   inset-block-start:0;
+  inset-inline-start:0;
   z-index: 1;
 `;
 const iconSearchMobileStyle = styledComponent.i`
@@ -267,11 +272,11 @@ class Filter extends Component {
   }
 
   renderNavMobile() {
-    return buttomMobileStyle(
+    return buttonMobileStyle(
       {
         onClick: this.eventShowNav,
         // onResize: this.eventDynamicHeader,
-        class: "buttomMobile",
+        class: "buttonNavMobile",
         children: [
           iconNavMobileStyle(
             { class: "icon-icon-hamburger-yellow", id: "menu-mobile" },
@@ -389,15 +394,18 @@ class Filter extends Component {
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $formSearch = document.querySelector(".search");
+    const $iconNavhMobile = document.querySelector(".buttonNavMobile");
 
     if (!this.isShowMobile) {
       $formSearch.style.display = "flex";
       $logo.style.display = "none";
+      $iconNavhMobile.style.display = "none"
       $iconSearchMobile.className = "icon-icon-back-yellow";
       this.isShowMobile = true;
     } else {
       $formSearch.style.display = "none";
       $logo.style.display = "block";
+      $iconNavhMobile.style.display = "block";
       $iconSearchMobile.className = "icon-icon-search-yellow";
       this.isShowMobile = false;
     }
@@ -407,6 +415,7 @@ class Filter extends Component {
     const $formSearch = document.querySelector(".search");
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
+    const $iconNavhMobile = document.querySelector(".buttonNavMobile");
 
     if (window.screen.width > 1200) {
       $formSearch.style.display = "flex";
@@ -414,16 +423,17 @@ class Filter extends Component {
     } else if (window.screen.width < 1200) {
       $formSearch.style.display = "none";
       $logo.style.display = "block";
+      $iconNavhMobile.style.display = "block";
       $iconSearchMobile.className = "icon-icon-search-yellow";
     }
   };
 
   renderSearchMobile() {
-    return buttomMobileStyle(
+    return buttonMobileStyle(
       {
         onClick: this.eventShowSearch,
         onResize: this.eventDynamicHeader,
-        class: "buttomMobile",
+        class: "buttonSearchMobile",
         children: iconSearchMobileStyle(
           { class: "icon-icon-search-yellow", id: "search-mobile" },
           ""

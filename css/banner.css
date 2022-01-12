@@ -13,10 +13,16 @@
 
 .movie-banner {
   inline-size: 85%;
-  grid-template-columns: 1rem 16rem;
+  grid-template-columns: 1rem minmax(8rem, 16rem) 1rem;
   grid-template-rows: auto 4rem 6rem;
   grid-template-areas: '. .''.play''. add';
   gap: 1rem;
+}
+
+.button-banner p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .selectedBanner a div {

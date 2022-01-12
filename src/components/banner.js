@@ -102,6 +102,8 @@ class Banner extends Component {
                   children: [
                     buttonBannerPlayStyle(
                       {
+                        class: "button-banner play",
+                        class: "button-banner play",
                         children: [
                           createChildren("i", { class: "icon-icon-play" }),
                           createChildren("p", {}, "VER AHORA"),
@@ -111,6 +113,7 @@ class Banner extends Component {
                     ),
                     buttonBannerAddStyle(
                       {
+                        class: "button-banner add",
                         children: [
                           createChildren("i", { class: "icon-icon-plus" }),
                           createChildren("p", {}, "VER DESPUÉS"),
@@ -130,6 +133,7 @@ class Banner extends Component {
                   children: [
                     buttonBannerPlayStyle(
                       {
+                        class: "button-banner play",
                         children: [
                           createChildren("i", { class: "icon-icon-play" }),
                           createChildren("p", {}, "VER AHORA"),
@@ -139,6 +143,7 @@ class Banner extends Component {
                     ),
                     buttonBannerAddStyle(
                       {
+                        class: "button-banner add",
                         children: [
                           createChildren("i", { class: "icon-icon-plus" }),
                           createChildren("p", {}, "VER DESPUÉS"),
@@ -158,6 +163,7 @@ class Banner extends Component {
                   children: [
                     buttonBannerPlayStyle(
                       {
+                        class: "button-banner play",
                         children: [
                           createChildren("i", { class: "icon-icon-play" }),
                           createChildren("p", {}, "VER AHORA"),
@@ -167,6 +173,7 @@ class Banner extends Component {
                     ),
                     buttonBannerAddStyle(
                       {
+                        class: "button-banner add",
                         children: [
                           createChildren("i", { class: "icon-icon-plus" }),
                           createChildren("p", {}, "VER DESPUÉS"),

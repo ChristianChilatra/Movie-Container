@@ -70,6 +70,7 @@ body {
   content: "\e900";
   color: #fffffe;
 }
+
 .icon-icon-back-yellow:before {
   content: "\e900";
   color: var(--primary);
@@ -96,6 +97,7 @@ body {
   content: "\e904";
   color: #fffffe;
 }
+
 .icon-icon-close-yellow:before {
   content: "\e904";
   color: var(--primary);
@@ -110,6 +112,7 @@ body {
   content: "\e906";
   color: #fffffe;
 }
+
 .icon-icon-hamburger-yellow:before {
   content: "\e906";
   color: var(--primary);
@@ -122,12 +125,12 @@ body {
 
 .icon-icon-play:before {
   content: "\e908";
-  color: #fffffe;
+  color: var(--black);
 }
 
 .icon-icon-plus:before {
   content: "\e909";
-  color: #fffffe;
+  color: var(--primary);
 }
 
 .icon-icon-search:before {

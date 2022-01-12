@@ -420,12 +420,14 @@ class Filter extends Component {
     if (window.screen.width > 1200) {
       $formSearch.style.display = "flex";
       $logo.style.display = "block";
-    } else if (window.screen.width < 1200) {
-      $formSearch.style.display = "none";
-      $logo.style.display = "block";
-      $iconNavhMobile.style.display = "block";
-      $iconSearchMobile.className = "icon-icon-search-yellow";
     }
+    // else if (window.screen.width < 1200) {
+
+    //   $formSearch.style.display = "none";
+    //   $logo.style.display = "block";
+    //   $iconNavhMobile.style.display = "block";
+    //   $iconSearchMobile.className = "icon-icon-search-yellow";
+    // }
   };
 
   renderSearchMobile() {

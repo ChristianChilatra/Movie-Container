@@ -26,11 +26,106 @@ const containerMovieStyle = styledComponent.div`
   grid-gap: .5rem;
   justify-content: center;
 `;
+const modalStyle = styledComponent.dialog`
+  inline-size: 100%;
+  block-size: 100vh;
+  background: #0F0E17;
+  opacity: 0.93;
+  display: flex;
+  justify-content: center;
+`;
+
+const containerDataMovieStyle = styledComponent.div`
+
+`;
+
+const iconButtonStyle = styledComponent.button`
+  block-size: 2rem;
+  inline-size: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+`;
+
+const iconStyle = styledComponent.i`
+  font-size: 2rem;
+`;
+const containerPosterStyle = styledComponent.div`
+  background-size: cover;
+  border-radius: 1rem;
+  cursor: pointer;
+
+  transform: matrix(1.14,-0.22,0.67,0.74,0,0);
+  grid-area: poster;
+  place-self: center;
+`;
+const nameMovieStyle = styledComponent.h2`
+  font: var(--headline1);
+
+  grid-area: title;
+  color: var(--white);
+  margin: 0;
+`;
+const descriptionMovieStyle = styledComponent.p`
+  font: var(--body1-regular);
+
+  color: var(--white);
+  grid-area: desc;
+`;
+const dateMovieStyle = styledComponent.p`
+  font: var(--body1-regular);
+
+  color: var(--white);
+  grid-area: date;
+`;
+const containerButtonModalStyle = styledComponent.p`
+  font: var(--body1-regular);
+  color: var(--white);
+  grid-area: button;
+`;
+
+const buttonModalPlayStyle = styledComponent.button`
+  grid-area: play;
+  inline-size: auto;
+  block-size: 3rem;
+  border-radius: 0.25rem;
+  background: var(--primary);
+  padding: 0 2rem;
+  border: 1px solid var(--primary);
+  font: var(--button);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--black);
+  box-sizing: content-box;
+  cursor: pointer;
+`;
+const buttonModalAddStyle = styledComponent.button`
+  grid-area: add;
+  inline-size: auto;
+  block-size: 3rem;
+  border-radius: 0.25rem;
+  padding: 0 2rem;
+  background: var(--black);
+  border: 1px solid var(--primary);
+  font: var(--button);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--primary);
+  box-sizing: content-box;
+  cursor: pointer;
+`;
 class App extends Component {
 
+  closeModal = () => {
+    const $modal = document.querySelector(".modal");
+    $modal.close();
+  };
 
   async render() {
-
     return createElement("body", {
       children: [
         new Header().render(),
@@ -43,13 +138,80 @@ class App extends Component {
               containerMovieStyle(
                 {
                   class: "containerMovieStyle",
-                  children: [
-                    ...(await new ListMovie({ page: 1 }).render()),
-                  ],
+                  children: [...(await new ListMovie({ page: 1 }).render())],
                 },
                 ""
               ),
               createElement("div", { class: "colaider" }, ""),
+            ],
+          },
+          ""
+        ),
+        modalStyle(
+          {
+            class: "modal",
+            children: [
+              containerDataMovieStyle(
+                {
+                  class: "container-data-movie",
+                  children: [
+                    containerPosterStyle({ class: "container-poster" }, ""),
+                    nameMovieStyle({ class: "name-movie" }, ""),
+                    descriptionMovieStyle({ class: "description-movie" }, ""),
+                    dateMovieStyle({ class: "date-movie" }, ""),
+                    containerButtonModalStyle(
+                      {
+                        class: "container-button-modal",
+                        children: [
+                          buttonModalPlayStyle(
+                            {
+                              class: "button-modal play",
+                              class: "button-modal play",
+                              children: [
+                                createChildren("i", {
+                                  class: "icon-icon-play",
+                                }),
+                                createChildren("p", {}, "VER AHORA"),
+                              ],
+                            },
+                            ""
+                          ),
+                          buttonModalAddStyle(
+                            {
+                              class: "button-modal add",
+                              children: [
+                                createChildren("i", {
+                                  class: "icon-icon-plus",
+                                }),
+                                createChildren("p", {}, "VER DESPUÉS"),
+                              ],
+                            },
+                            ""
+                          ),
+                        ],
+                      },
+                      ""
+                    ),
+                  ],
+                },
+                ""
+              ),
+              iconButtonStyle(
+                {
+                  class: "close-modal-button",
+                  onClick: this.closeModal,
+                  children: [
+                    iconStyle(
+                      {
+                        class: "icon-icon-close",
+                        id: "close-modal",
+                      },
+                      ""
+                    ),
+                  ],
+                },
+                ""
+              ),
             ],
           },
           ""

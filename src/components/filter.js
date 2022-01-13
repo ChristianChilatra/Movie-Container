@@ -410,8 +410,9 @@ class Filter extends Component {
 
   eventDynamicHeader = () => {
 
-    if (his.isInnerHeight == 0) {
-      this.isInnerHeight = window.innerHeight;
+    if (this.props.isInnerHeight === 0) {
+
+      this.props.isInnerHeight = window.innerHeight;
     }
 
     const $formSearch = document.querySelector(".search");
@@ -419,14 +420,15 @@ class Filter extends Component {
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $iconNavhMobile = document.querySelector(".buttonNavMobile");
 
-    console.log(this.isInnerHeight);
-
     if (window.screen.width > 1200) {
       $formSearch.style.display = "flex";
       $logo.style.display = "block";
       $iconNavhMobile.style.display = "none";
     }
-    else if (window.screen.width < 1200 && window.screen.height == this.isInnerHeight) {
+    else if (
+      window.screen.width < 1200 &&
+      window.screen.height == this.props.isInnerHeight
+    ) {
       $formSearch.style.display = "none";
       $logo.style.display = "block";
       $iconNavhMobile.style.display = "block";

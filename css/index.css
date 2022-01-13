@@ -2,6 +2,7 @@
 @import url('./header.css');
 @import url('./movie.css');
 @import url('./main.css');
+@import url('./modal.css');
 
 :root {
   --primary: #FED941;

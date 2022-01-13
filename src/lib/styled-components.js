@@ -17,6 +17,7 @@ const container = [
   "main",
   "p",
   "button",
+  "dialog",
 ];
 
 const styledComponent = {};

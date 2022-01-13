@@ -39,6 +39,8 @@ export async function listMovie(page, filter,query) {
   for (const key in data["results"]) {
     const movie = {
       title: data["results"][key]["title"],
+      overview: data["results"][key]["overview"],
+      release_date: data["results"][key]["release_date"],
       posterPath: data["results"][key]["poster_path"],
       average: data["results"][key]["vote_average"],
       id: data["results"][key]["id"],

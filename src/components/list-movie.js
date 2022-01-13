@@ -17,12 +17,15 @@ class ListMovie extends Component {
     const { movies, posterMovies } = await listMovie(page, filter, query);
 
     const pageMovie = Array.from(movies, (x, index) =>
-      containerMovieStyle({
+      containerMovieStyle(
+        {
           class: "containerMovie",
           children: [
             new Movie({
               title: x["title"],
               average: x["average"],
+              overview: x["overview"],
+              release_date: x["release_date"],
               poster: posterMovies[index],
             }),
           ],

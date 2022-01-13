@@ -10,6 +10,7 @@ const AppStyle = styledComponent.div`
   background: transparent;
   inline-size: auto;
   block-size: 100%;
+  display: flex;
   flex-direction: column;
   gap: 2rem;
 `;

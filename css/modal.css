@@ -7,6 +7,11 @@
   grid-template-areas: ' title''poster'' desc'' date''button';
 }
 
+.name-movie {
+  font: var(--headline3);
+  text-align: center;
+}
+
 .container-poster {
   inline-size: 10rem;
   block-size: 16rem;
@@ -28,6 +33,10 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 4fr 1fr 2fr;
     grid-template-areas: 'poster title''poster desc''poster date''poster button';
+  }
+
+  .name-movie {
+    font: var(--headline1);
   }
 
   .container-poster {

@@ -34,14 +34,16 @@ function background(url) {
 class Movie extends Component {
 
   showModal = () =>{
-    const { title, average, poster, overview, release_date } = this.props;
+    const { title, average, poster, overview, release_date, id } = this.props;
 
     const $modal = document.querySelector(".modal")
     const $containerPoster = document.querySelector(".container-poster");
     const $containerName = document.querySelector(".name-movie");
     const $containerDescription = document.querySelector(".description-movie");
     const $containerDate = document.querySelector(".date-movie");
+    const $buttonModalPlay = document.querySelector(".button-modal.play");
 
+    $buttonModalPlay.setAttribute('id', id)
     $containerPoster.style.backgroundImage = `url(${poster})`;
     $containerName.textContent = `${title}`;
     $containerDescription.textContent = `${overview}`;

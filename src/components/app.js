@@ -1,6 +1,7 @@
 import { Component } from "../lib/react.js";
 import { createElement, createChildren } from "../lib/react-element.js";
 import styledComponent from "../lib/styled-components.js";
+import { trailerMovie } from "../services/data.js";
 import Header from "./header.js";
 import Banner from "./banner.js";
 import ListMovie from "./list-movie.js";
@@ -9,7 +10,6 @@ const AppStyle = styledComponent.div`
   background: transparent;
   inline-size: auto;
   block-size: 100%;
-  display: flex;
   flex-direction: column;
   gap: 2rem;
 `;
@@ -27,7 +27,7 @@ const containerMovieStyle = styledComponent.div`
   justify-content: center;
 `;
 const modalStyle = styledComponent.dialog`
-  inline-size: 100%;
+  inline-size: auto;
   block-size: 100vh;
   background: #0F0E17;
   opacity: 0.93;
@@ -51,6 +51,9 @@ const iconButtonStyle = styledComponent.button`
 
 const iconStyle = styledComponent.i`
   font-size: 2rem;
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
 `;
 const containerPosterStyle = styledComponent.div`
   background-size: cover;
@@ -62,8 +65,6 @@ const containerPosterStyle = styledComponent.div`
   place-self: center;
 `;
 const nameMovieStyle = styledComponent.h2`
-  font: var(--headline1);
-
   grid-area: title;
   color: var(--white);
   margin: 0;
@@ -119,10 +120,15 @@ const buttonModalAddStyle = styledComponent.button`
   cursor: pointer;
 `;
 class App extends Component {
-
   closeModal = () => {
     const $modal = document.querySelector(".modal");
     $modal.close();
+  };
+
+  eventTrailerMovie = async (event) => {
+    const data = await trailerMovie(event.target.id);
+    const key = data.results[0].key;
+    window.location = `https://www.youtube.com/watch?v=${key}`;
   };
 
   async render() {
@@ -166,7 +172,7 @@ class App extends Component {
                           buttonModalPlayStyle(
                             {
                               class: "button-modal play",
-                              class: "button-modal play",
+                              onClick: this.eventTrailerMovie,
                               children: [
                                 createChildren("i", {
                                   class: "icon-icon-play",

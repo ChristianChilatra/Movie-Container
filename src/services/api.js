@@ -5,7 +5,7 @@ class API {
 
   baseAPI = "https://api.themoviedb.org/3/";
 
-  discoverMovie(page, filter, query) {
+  discoverMovie(page,filter, query, id ) {
     switch (filter) {
       case "asc":
         return `${this.baseAPI}discover/movie?api_key=${this.KEY_API}&sort_by=vote_average.asc&page=${page}&language=es`;
@@ -13,10 +13,13 @@ class API {
         return `${this.baseAPI}search/movie?api_key=${this.KEY_API}&query=${query}&page=${page}&language=es`;
       case "desc":
         return `${this.baseAPI}discover/movie?api_key=${this.KEY_API}&sort_by=vote_average.desc&page=${page}&language=es`;
+      case "video":
+        return `${this.baseAPI}movie/${id}/videos?api_key=${this.KEY_API}&language=es`;
       default:
         return `${this.baseAPI}discover/movie?api_key=${this.KEY_API}&page=${page}&language=es`;
     }
   }
+
 }
 
 export default API

@@ -26,6 +26,7 @@ class ListMovie extends Component {
               average: x["average"],
               overview: x["overview"],
               release_date: x["release_date"],
+              id: x["id"],
               poster: posterMovies[index],
             }),
           ],

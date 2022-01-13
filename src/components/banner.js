@@ -1,7 +1,7 @@
 import { createElement, createChildren } from "../lib/react-element.js";
 import { Component } from "../lib/react.js";
 import styledComponent from "../lib/styled-components.js";
-import { movieBanner } from "../services/data.js";
+import { movieBanner, trailerMovie } from "../services/data.js";
 
 const bannerStyle = styledComponent.section`
   inline-size: auto;
@@ -81,11 +81,14 @@ function background(url) {
   return `background: url('${url}');`;
 }
 
-const listMovie = await movieBanner();
+const { imgPathMovie, idMovie } = await movieBanner();
 
 class Banner extends Component {
-
-  addEvent = () => {};
+  eventTrailerMovie = async (event) => {
+    const data = await trailerMovie(event.target.id)
+    const key = data.results[0].key
+    window.location = `https://www.youtube.com/watch?v=${key}`;
+  };
 
   render() {
     return bannerStyle(
@@ -102,8 +105,9 @@ class Banner extends Component {
                   children: [
                     buttonBannerPlayStyle(
                       {
+                        onClick: this.eventTrailerMovie,
                         class: "button-banner play",
-                        class: "button-banner play",
+                        id: idMovie[0],
                         children: [
                           createChildren("i", { class: "icon-icon-play" }),
                           createChildren("p", {}, "VER AHORA"),
@@ -124,7 +128,7 @@ class Banner extends Component {
                   ],
                 },
                 "",
-                background(listMovie[0])
+                background(imgPathMovie[0])
               ),
               movieStyle(
                 {
@@ -133,7 +137,9 @@ class Banner extends Component {
                   children: [
                     buttonBannerPlayStyle(
                       {
+                        onClick: this.eventTrailerMovie,
                         class: "button-banner play",
+                        id: idMovie[1],
                         children: [
                           createChildren("i", { class: "icon-icon-play" }),
                           createChildren("p", {}, "VER AHORA"),
@@ -154,7 +160,7 @@ class Banner extends Component {
                   ],
                 },
                 "",
-                background(listMovie[1])
+                background(imgPathMovie[1])
               ),
               movieStyle(
                 {
@@ -163,7 +169,9 @@ class Banner extends Component {
                   children: [
                     buttonBannerPlayStyle(
                       {
+                        onClick: this.eventTrailerMovie,
                         class: "button-banner play",
+                        id: idMovie[2],
                         children: [
                           createChildren("i", { class: "icon-icon-play" }),
                           createChildren("p", {}, "VER AHORA"),
@@ -184,7 +192,7 @@ class Banner extends Component {
                   ],
                 },
                 "",
-                background(listMovie[2])
+                background(imgPathMovie[2])
               ),
             ],
           }),

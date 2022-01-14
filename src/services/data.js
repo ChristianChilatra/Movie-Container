@@ -1,9 +1,9 @@
 import API from "./api.js";
 
-export async function buildData(page, filter, query, id) {
+export async function buildData(params) {
   const URL = new API("7b6af2d10187dac2f4a78feca90ed1b7");
 
-  const response = await fetch(URL.discoverMovie(page, filter, query, id));
+  const response = await fetch(URL.discoverMovie(params));
 
   const data = await response.json();
 
@@ -28,12 +28,11 @@ export async function movieBanner() {
   return { imgPathMovie, idMovie };
 }
 
-export async function listMovie(page, filter,query) {
+export async function listMovie(params) {
 
+  const URL = "https://image.tmdb.org/t/p/original";  
 
-  const URL = "https://image.tmdb.org/t/p/original";
-
-  const data = await buildData(page, filter, query);
+  const data = await buildData(params);
 
   const movies = [];
 
@@ -55,8 +54,7 @@ export async function listMovie(page, filter,query) {
   return { movies, posterMovies };
 }
 
-export async function trailerMovie(id) {
-  const data = await buildData(1, "video",'', id);
-  console.log(data);
+export async function trailerMovie(params) {
+  const data = await buildData({filter:"video",id: params.id});
   return data
 }

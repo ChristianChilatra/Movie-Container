@@ -2,12 +2,12 @@
   block-size: 21rem;
 }
 
-.containerMovie {
+.container-movie-banner {
   inline-size: 100%;
   block-size: 20rem;
 }
 
-.containerMovie::-webkit-scrollbar {
+.container-movie-banner::-webkit-scrollbar {
   display: none;
 }
 
@@ -25,15 +25,15 @@
   text-overflow: ellipsis;
 }
 
-.selectedBanner a div {
+.selected-banner a div {
   background: var(--grey);
 }
 
-.selectedBanner a:active div {
+.selected-banner a:active div {
   background: var(--white);
 }
 
-.selectedBanner a:hover div {
+.selected-banner a:hover div {
   background: var(--white);
 }
 
@@ -42,7 +42,7 @@
     block-size: 31rem;
   }
 
-  .containerMovie {
+  .container-movie-banner {
     inline-size: 105%;
     block-size: 30rem;
   }

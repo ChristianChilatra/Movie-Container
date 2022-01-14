@@ -11,7 +11,7 @@ const bannerStyle = styledComponent.section`
   flex-shrink: 0;
 `;
 
-const containerMovieStyle = styledComponent.div`
+const containerMovieBannerStyle = styledComponent.div`
   position: absolute;
   display: flex;
   gap: 1rem;
@@ -29,7 +29,7 @@ const movieStyle = styledComponent.div`
   background-position-x: center;
 `;
 
-const buttonBannerPlayStyle = styledComponent.button`
+const playButtonBannerStyle = styledComponent.button`
   grid-area: play;
   inline-size: auto;
   block-size: 3rem;
@@ -45,7 +45,7 @@ const buttonBannerPlayStyle = styledComponent.button`
   box-sizing: content-box;
   cursor: pointer;
 `;
-const buttonBannerAddStyle = styledComponent.button`
+const addButtonBannerStyle = styledComponent.button`
   grid-area: add;
   inline-size: auto;
   block-size: 3rem;
@@ -87,11 +87,11 @@ class Banner extends Component {
   eventTrailerMovie = async (event) => {
     const id = event.path.find(el => el.id != undefined && el.id != '').id
     const data = await trailerMovie({id : id});
-    
+
     if(data.results.length != 0){
       window.location = `https://www.youtube.com/watch?v=${data.results[0].key}`;
     }else{
-      console.log('Pelicula no cuenta con Trailer');
+      window.alert('Pelicula no cuenta con Trailer');
     }
   };
 
@@ -100,15 +100,15 @@ class Banner extends Component {
       {
         class: "banner",
         children: [
-          containerMovieStyle({
-            class: "containerMovie",
+          containerMovieBannerStyle({
+            class: "container-movie-banner",
             children: [
               movieStyle(
                 {
                   class: "movie-banner",
                   id: "movie-banner-1",
                   children: [
-                    buttonBannerPlayStyle(
+                    playButtonBannerStyle(
                       {
                         onClick: this.eventTrailerMovie,
                         class: "button-banner play",
@@ -120,7 +120,7 @@ class Banner extends Component {
                       },
                       ""
                     ),
-                    buttonBannerAddStyle(
+                    addButtonBannerStyle(
                       {
                         class: "button-banner add",
                         children: [
@@ -140,7 +140,7 @@ class Banner extends Component {
                   class: "movie-banner",
                   id: "movie-banner-2",
                   children: [
-                    buttonBannerPlayStyle(
+                    playButtonBannerStyle(
                       {
                         onClick: this.eventTrailerMovie,
                         class: "button-banner play",
@@ -152,7 +152,7 @@ class Banner extends Component {
                       },
                       ""
                     ),
-                    buttonBannerAddStyle(
+                    addButtonBannerStyle(
                       {
                         class: "button-banner add",
                         children: [
@@ -172,7 +172,7 @@ class Banner extends Component {
                   class: "movie-banner",
                   id: "movie-banner-3",
                   children: [
-                    buttonBannerPlayStyle(
+                    playButtonBannerStyle(
                       {
                         onClick: this.eventTrailerMovie,
                         class: "button-banner play",
@@ -184,7 +184,7 @@ class Banner extends Component {
                       },
                       ""
                     ),
-                    buttonBannerAddStyle(
+                    addButtonBannerStyle(
                       {
                         class: "button-banner add",
                         children: [
@@ -202,7 +202,7 @@ class Banner extends Component {
             ],
           }),
           selectedBannerStyle({
-            class: "selectedBanner",
+            class: "selected-banner",
             children: [
               createChildren(
                 "a",

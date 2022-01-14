@@ -26,7 +26,7 @@ const liStyle = styledComponent.li`
   display: flex;
   align-items: center;
 `;
-const buttonFilterStyle = styledComponent.button`
+const filterButtonStyle = styledComponent.button`
   background: transparent;
   padding: 0;
   margin: 0;
@@ -106,7 +106,7 @@ const liMobileStyle = styledComponent.li`
   display: flex;
   align-items: center;
 `;
-const buttonFilterMobileStyle = styledComponent.button`
+const filterButtonMobileStyle = styledComponent.button`
   background: transparent;
   padding: 0;
   margin: 0;
@@ -141,14 +141,25 @@ const iconSearchMobileStyle = styledComponent.i`
   font-size: 2rem;
 `;
 
+const containerTMDB = styledComponent.a`
+  inline-size: 12rem;
+  block-size: 6rem;
+  position: absolute;
+`;
+
+const containerTMDBMobile = styledComponent.a`
+  inline-size: 12rem;
+  block-size: 6rem;
+`;
+
 
 class Filter extends Component {
 
   eventAll = async () => {
     const page = 1;
 
-    const $listMovie = document.querySelector(".containerMovieStyle");
-    const $title = document.querySelector(".titleFilter");
+    const $listMovie = document.querySelector(".container-list-movie");
+    const $title = document.querySelector(".filter-title");
     const listMovie = await new ListMovie({
       page,
     }).render();
@@ -166,8 +177,8 @@ class Filter extends Component {
     const page = 1;
     const filter = "desc";
 
-    const $listMovie = document.querySelector(".containerMovieStyle");
-    const $title = document.querySelector(".titleFilter");
+    const $listMovie = document.querySelector(".container-list-movie");
+    const $title = document.querySelector(".filter-title");
     const listMovie = await new ListMovie({
       page,
       filter,
@@ -187,8 +198,8 @@ class Filter extends Component {
     const page = 1;
     const filter = "asc";
 
-    const $listMovie = document.querySelector(".containerMovieStyle");
-    const $title = document.querySelector(".titleFilter");
+    const $listMovie = document.querySelector(".container-list-movie");
+    const $title = document.querySelector(".filter-title");
     const listMovie = await new ListMovie({
       page,
       filter,
@@ -214,13 +225,13 @@ class Filter extends Component {
               class: "list-nav",
               children: [
                 liMobileStyle({
-                  children: buttonFilterStyle(
+                  children: filterButtonStyle(
                     { class: "all filter", onClick: this.eventAll },
                     "Todas"
                   ),
                 }),
                 liMobileStyle({
-                  children: buttonFilterStyle(
+                  children: filterButtonStyle(
                     {
                       class: "most-value filter",
                       onClick: this.eventMostValue,
@@ -229,7 +240,7 @@ class Filter extends Component {
                   ),
                 }),
                 liMobileStyle({
-                  children: buttonFilterStyle(
+                  children: filterButtonStyle(
                     {
                       class: "least-value filter",
                       onClick: this.eventLeastValue,
@@ -237,6 +248,19 @@ class Filter extends Component {
                     "Menos valoradas"
                   ),
                 }),
+                containerTMDB(
+                  {
+                    class: "container-TMDB",
+                    href: "https://www.themoviedb.org/",
+                    children: [
+                      createChildren("img", {
+                        class: "logo-TMDB",
+                        src: "../../icon/logo-TMDB.svg",
+                      }),
+                    ],
+                  },
+                  ""
+                ),
               ],
             },
             ""
@@ -272,7 +296,7 @@ class Filter extends Component {
       {
         onClick: this.eventShowNav,
         // onResize: this.eventDynamicHeader,
-        class: "buttonNavMobile",
+        class: "button-nav-mobile",
         children: [
           iconNavMobileStyle(
             { class: "icon-icon-hamburger-yellow", id: "menu-mobile" },
@@ -287,13 +311,13 @@ class Filter extends Component {
                     class: "list-nav",
                     children: [
                       liStyle({
-                        children: buttonFilterMobileStyle(
+                        children: filterButtonMobileStyle(
                           { class: "all filter", onClick: this.eventAll },
                           "Todas"
                         ),
                       }),
                       liStyle({
-                        children: buttonFilterMobileStyle(
+                        children: filterButtonMobileStyle(
                           {
                             class: "most-value filter",
                             onClick: this.eventMostValue,
@@ -302,7 +326,7 @@ class Filter extends Component {
                         ),
                       }),
                       liStyle({
-                        children: buttonFilterMobileStyle(
+                        children: filterButtonMobileStyle(
                           {
                             class: "least-value filter",
                             onClick: this.eventLeastValue,
@@ -310,6 +334,19 @@ class Filter extends Component {
                           "Menos valoradas"
                         ),
                       }),
+                      containerTMDBMobile(
+                        {
+                          class: "container-TMDB-mobile",
+                          href: "https://www.themoviedb.org/",
+                          children: [
+                            createChildren("img", {
+                              class: "logo-TMDB",
+                              src: "../../icon/logo-TMDB.svg",
+                            }),
+                          ],
+                        },
+                        ""
+                      ),
                     ],
                   },
                   ""
@@ -332,8 +369,8 @@ class Filter extends Component {
     const page = 1;
     const filter = "search";
 
-    const $listMovie = document.querySelector(".containerMovieStyle");
-    const $title = document.querySelector(".titleFilter");
+    const $listMovie = document.querySelector(".container-list-movie");
+    const $title = document.querySelector(".filter-title");
 
     if (query === "") {
       this.eventAll();
@@ -371,7 +408,7 @@ class Filter extends Component {
         ),
         containerButtomStyle(
           {
-            class: "containerButtom",
+            class: "container-buttom",
             children: [
               inputButtomStyle(
                 { type: "submit", value: "", name: "submit" },
@@ -388,10 +425,10 @@ class Filter extends Component {
 
   eventShowSearch = () => {
 
-    const $logo = document.querySelector(".logo");
+    const $logo = document.querySelector(".container-logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
     const $formSearch = document.querySelector(".search");
-    const $iconNavhMobile = document.querySelector(".buttonNavMobile");
+    const $iconNavhMobile = document.querySelector(".button-nav-mobile");
 
     if (!this.isShowMobile) {
       $formSearch.style.display = "flex";
@@ -418,7 +455,7 @@ class Filter extends Component {
     const $formSearch = document.querySelector(".search");
     const $logo = document.querySelector(".logo");
     const $iconSearchMobile = document.querySelector("#search-mobile");
-    const $iconNavhMobile = document.querySelector(".buttonNavMobile");
+    const $iconNavhMobile = document.querySelector(".button-nav-mobile");
 
     if (window.screen.width > 1200) {
       $formSearch.style.display = "flex";
@@ -441,7 +478,7 @@ class Filter extends Component {
       {
         onClick: this.eventShowSearch,
         onResize: this.eventDynamicHeader,
-        class: "buttonSearchMobile",
+        class: "button-search-mobile",
         children: iconSearchMobileStyle(
           { class: "icon-icon-search-yellow", id: "search-mobile" },
           ""

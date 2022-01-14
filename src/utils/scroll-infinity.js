@@ -3,7 +3,7 @@ import ListMovie from "../components/list-movie.js";
 let pageLoad = 1;
 
 export async function scrollInfinity(filter, query) {
-  const $listMovie = document.querySelector(".containerMovieStyle");
+  const $listMovie = document.querySelector(".container-list-movie");
   const $button = document.querySelectorAll(".filter");
 
   const handleIntersection = async (entries) => {

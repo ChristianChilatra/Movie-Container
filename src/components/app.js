@@ -15,12 +15,12 @@ const AppStyle = styledComponent.div`
   gap: 2rem;
 `;
 
-const titleStyle = styledComponent.h1`
+const filterTitleStyle = styledComponent.h1`
   font: var(--headline1);
   margin: 0;
 `;
 
-const containerMovieStyle = styledComponent.div`
+const containerListMovieStyle = styledComponent.div`
   inline-size: 100%;
   block-size: auto;
   display:grid;
@@ -32,7 +32,6 @@ const modalStyle = styledComponent.dialog`
   block-size: 100vh;
   background: #0F0E17;
   opacity: 0.93;
-  display: flex;
   justify-content: center;
 `;
 
@@ -124,12 +123,13 @@ class App extends Component {
   closeModal = () => {
     const $modal = document.querySelector(".modal");
     $modal.close();
+    $modal.style.display = "none";
   };
 
   eventTrailerMovie = async (event) => {
     const id = event.path.find(el => el.id != undefined && el.id != '').id
     const data = await trailerMovie({id : id});
-    
+
     if(data.results.length != 0){
       window.location = `https://www.youtube.com/watch?v=${data.results[0].key}`;
     }else{
@@ -146,10 +146,10 @@ class App extends Component {
             class: "wrapper",
             children: [
               new Banner().render(),
-              titleStyle({ class: "titleFilter" }, ""),
-              containerMovieStyle(
+              filterTitleStyle({ class: "filter-title" }, ""),
+              containerListMovieStyle(
                 {
-                  class: "containerMovieStyle",
+                  class: "container-list-movie",
                   children: [...(await new ListMovie({ page: 1 }).render())],
                 },
                 ""

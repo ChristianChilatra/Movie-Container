@@ -6,7 +6,7 @@
   display: none;
 }
 
-.containerButtonsMobile{
+.container-button-mobile {
   display: flex;
 }
 
@@ -20,7 +20,7 @@
     display: flex;
   }
 
-  .containerButtonsMobile {
+  .container-button-mobile {
     display: none;
   }
 }

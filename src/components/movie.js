@@ -48,6 +48,7 @@ class Movie extends Component {
     $containerName.textContent = `${title}`;
     $containerDescription.textContent = `${overview}`;
     $containerDate.textContent = `${release_date}`;
+    $modal.style.display = "flex";
     $modal.showModal();
 
   }

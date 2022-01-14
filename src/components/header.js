@@ -17,6 +17,12 @@ const headerStyle = styledComponent.header`
   z-index: 1;
 `;
 
+const containerLogoStyle = styledComponent.a`
+  inline-size: 5rem;
+  block-size: 5rem;
+
+`;
+
 const containerButtonsMobile = styledComponent.div`
 gap: 2rem;
 `
@@ -28,7 +34,7 @@ class Header extends Component {
     return headerStyle(
       {
         children: [
-          createChildren(
+          containerLogoStyle({class: "container-logo", href: "./",children : createChildren(
             "img",
             {
               class: "logo",
@@ -37,14 +43,17 @@ class Header extends Component {
               height: 80,
             },
             ""
-          ),
+          )},""),
           new Filter().renderNav(),
           containerButtonsMobile(
             {
-              class: "containerButtonsMobile",
+              class: "container-button-mobile",
               children: [
-                new Filter({isShowMobile :false, isInnerHeight: 0}).renderSearchMobile(),
-                new Filter({isShowMobile :false}).renderNavMobile(),
+                new Filter({
+                  isShowMobile: false,
+                  isInnerHeight: 0,
+                }).renderSearchMobile(),
+                new Filter({ isShowMobile: false }).renderNavMobile(),
               ],
             },
             ""

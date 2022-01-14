@@ -19,14 +19,14 @@ class ListMovie extends Component {
     const pageMovie = Array.from(movies, (x, index) =>
       containerMovieStyle(
         {
-          class: "containerMovie",
+          class: "container-movie",
           children: [
             new Movie({
-              title: x["title"],
-              average: x["average"],
-              overview: x["overview"],
-              release_date: x["release_date"],
-              id: x["id"],
+              title: x.title,
+              average: x.average,
+              overview: x.overview,
+              release_date: x.release_date,
+              id: x.id,
               poster: posterMovies[index],
             }),
           ],

@@ -85,9 +85,14 @@ const { imgPathMovie, idMovie } = await movieBanner();
 
 class Banner extends Component {
   eventTrailerMovie = async (event) => {
-    const data = await trailerMovie(event.target.id)
-    const key = data.results[0].key
-    window.location = `https://www.youtube.com/watch?v=${key}`;
+    const id = event.path.find(el => el.id != undefined && el.id != '').id
+    const data = await trailerMovie({id : id});
+    
+    if(data.results.length != 0){
+      window.location = `https://www.youtube.com/watch?v=${data.results[0].key}`;
+    }else{
+      console.log('Pelicula no cuenta con Trailer');
+    }
   };
 
   render() {

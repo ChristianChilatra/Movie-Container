@@ -14,7 +14,7 @@ class ListMovie extends Component {
   async render() {
 
     const {page, filter, query} = this.props
-    const { movies, posterMovies } = await listMovie(page, filter, query);
+    const { movies, posterMovies } = await listMovie({page, filter, query});
 
     const pageMovie = Array.from(movies, (x, index) =>
       containerMovieStyle(

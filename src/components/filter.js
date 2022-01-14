@@ -143,13 +143,19 @@ const iconSearchMobileStyle = styledComponent.i`
 
 const containerTMDB = styledComponent.a`
   inline-size: 12rem;
-  block-size: 6rem;
+  block-size: 2rem;
   position: absolute;
+  inset-inline-start: -5rem;
+  inset-block-start: 30rem;
+  display:flex;
+  transform: rotate(90deg);
 `;
 
 const containerTMDBMobile = styledComponent.a`
   inline-size: 12rem;
-  block-size: 6rem;
+  block-size: 2rem;
+  position: absolute;
+  inset-block-start: 30rem;
 `;
 
 
@@ -226,13 +232,18 @@ class Filter extends Component {
               children: [
                 liMobileStyle({
                   children: filterButtonStyle(
-                    { class: "all filter", onClick: this.eventAll },
+                    {
+                      class: "all filter",
+                      ariaLabel: "Boton Filtrar Todos",
+                      onClick: this.eventAll,
+                    },
                     "Todas"
                   ),
                 }),
                 liMobileStyle({
                   children: filterButtonStyle(
                     {
+                      ariaLabel: "Boton Filtrar Mas Valorados",
                       class: "most-value filter",
                       onClick: this.eventMostValue,
                     },
@@ -242,25 +253,29 @@ class Filter extends Component {
                 liMobileStyle({
                   children: filterButtonStyle(
                     {
+                      ariaLabel: "Boton Filtrar Menos Valorados",
                       class: "least-value filter",
                       onClick: this.eventLeastValue,
                     },
                     "Menos valoradas"
                   ),
                 }),
-                containerTMDB(
-                  {
-                    class: "container-TMDB",
-                    href: "https://www.themoviedb.org/",
-                    children: [
-                      createChildren("img", {
-                        class: "logo-TMDB",
-                        src: "../../icon/logo-TMDB.svg",
-                      }),
-                    ],
-                  },
-                  ""
-                ),
+              ],
+            },
+            ""
+          ),
+          containerTMDB(
+            {
+              class: "container-TMDB",
+              href: "https://www.themoviedb.org/",
+              children: [
+                createChildren("img", {
+                  class: "logo-TMDB",
+                  src: "../../icon/logo-TMDB.svg",
+                  alt: "Logo Atribuciones API TMDB",
+                  height: 32,
+                  width: 192,
+                }),
               ],
             },
             ""
@@ -299,7 +314,11 @@ class Filter extends Component {
         class: "button-nav-mobile",
         children: [
           iconNavMobileStyle(
-            { class: "icon-icon-hamburger-yellow", id: "menu-mobile" },
+            {
+              ariaLabel: "Boton Desplegar Menu",
+              class: "icon-icon-hamburger-yellow",
+              id: "menu-mobile",
+            },
             ""
           ),
           navMobileStyle(
@@ -312,13 +331,18 @@ class Filter extends Component {
                     children: [
                       liStyle({
                         children: filterButtonMobileStyle(
-                          { class: "all filter", onClick: this.eventAll },
+                          {
+                            ariaLabel: "Boton Filtrar Todos",
+                            class: "all filter",
+                            onClick: this.eventAll,
+                          },
                           "Todas"
                         ),
                       }),
                       liStyle({
                         children: filterButtonMobileStyle(
                           {
+                            ariaLabel: "Boton Filtrar Mas Valorados",
                             class: "most-value filter",
                             onClick: this.eventMostValue,
                           },
@@ -328,25 +352,27 @@ class Filter extends Component {
                       liStyle({
                         children: filterButtonMobileStyle(
                           {
+                            ariaLabel: "Boton Filtrar Menos Valorados",
                             class: "least-value filter",
                             onClick: this.eventLeastValue,
                           },
                           "Menos valoradas"
                         ),
                       }),
-                      containerTMDBMobile(
-                        {
-                          class: "container-TMDB-mobile",
-                          href: "https://www.themoviedb.org/",
-                          children: [
-                            createChildren("img", {
-                              class: "logo-TMDB",
-                              src: "../../icon/logo-TMDB.svg",
-                            }),
-                          ],
-                        },
-                        ""
-                      ),
+                    ],
+                  },
+                  ""
+                ),
+                containerTMDBMobile(
+                  {
+                    class: "container-TMDB-mobile",
+                    href: "https://www.themoviedb.org/",
+                    children: [
+                      createChildren("img", {
+                        class: "logo-TMDB",
+                        src: "../../icon/logo-TMDB.svg",
+                        alt: "Logo Atribuciones API TMDB",
+                      }),
                     ],
                   },
                   ""
@@ -478,6 +504,7 @@ class Filter extends Component {
       {
         onClick: this.eventShowSearch,
         onResize: this.eventDynamicHeader,
+        ariaLabel: "Boton Buscar Pelicula",
         class: "button-search-mobile",
         children: iconSearchMobileStyle(
           { class: "icon-icon-search-yellow", id: "search-mobile" },

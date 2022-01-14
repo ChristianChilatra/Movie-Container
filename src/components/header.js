@@ -34,16 +34,24 @@ class Header extends Component {
     return headerStyle(
       {
         children: [
-          containerLogoStyle({class: "container-logo", href: "./",children : createChildren(
-            "img",
+          containerLogoStyle(
             {
-              class: "logo",
-              src: "../../icon/clapperboard.png",
-              with: 80,
-              height: 80,
+              class: "container-logo",
+              href: "./",
+              children: createChildren(
+                "img",
+                {
+                  class: "logo",
+                  src: "../../icon/clapperboard.png",
+                  alt: "Logo Movie Container",
+                  with: 80,
+                  height: 80,
+                },
+                ""
+              ),
             },
             ""
-          )},""),
+          ),
           new Filter().renderNav(),
           containerButtonsMobile(
             {

@@ -71,6 +71,12 @@ const selectedBannerStyle = styledComponent.div`
   align-items: center;
 `;
 
+const textSelectedBannerStyle = styledComponent.a`
+  line-height: 0;
+  font-size: 0;
+  color: transparent;
+`;
+
 const refStyle = styledComponent.div`
   inline-size: 1rem;
   block-size: 1rem;
@@ -204,20 +210,17 @@ class Banner extends Component {
           selectedBannerStyle({
             class: "selected-banner",
             children: [
-              createChildren(
-                "a",
+              textSelectedBannerStyle(
                 { href: "#movie-banner-1", children: refStyle({}, "") },
-                ""
+                "Select Banner First"
               ),
-              createChildren(
-                "a",
+              textSelectedBannerStyle(
                 { href: "#movie-banner-2", children: refStyle({}, "") },
-                ""
+                "Select Banner Second"
               ),
-              createChildren(
-                "a",
+              textSelectedBannerStyle(
                 { href: "#movie-banner-3", children: refStyle({}, "") },
-                ""
+                "Select Banner Third"
               ),
             ],
           }),

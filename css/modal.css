@@ -1,3 +1,7 @@
+.modal{
+  transition: 1s all;
+}
+
 .container-data-movie {
   block-size: 21rem;
   inline-size: 75rem;

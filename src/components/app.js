@@ -149,6 +149,8 @@ class App extends Component {
               filterTitleStyle({ class: "filter-title" }, ""),
               containerListMovieStyle(
                 {
+                  role: "region",
+                  "aria-label": "Main",
                   class: "container-list-movie",
                   children: [...(await new ListMovie({ page: 1 }).render())],
                 },

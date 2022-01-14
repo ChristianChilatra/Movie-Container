@@ -105,6 +105,8 @@ class Banner extends Component {
     return bannerStyle(
       {
         class: "banner",
+        role: "region",
+        "aria-label": "Banner",
         children: [
           containerMovieBannerStyle({
             class: "container-movie-banner",
@@ -116,6 +118,7 @@ class Banner extends Component {
                   children: [
                     playButtonBannerStyle(
                       {
+                        "aria-label": "Boton Reproducir Trailer Banner",
                         onClick: this.eventTrailerMovie,
                         class: "button-banner play",
                         id: idMovie[0],
@@ -128,6 +131,7 @@ class Banner extends Component {
                     ),
                     addButtonBannerStyle(
                       {
+                        "aria-label": "Boton Agregar Trailer Banner",
                         class: "button-banner add",
                         children: [
                           createChildren("i", { class: "icon-icon-plus" }),
@@ -148,6 +152,7 @@ class Banner extends Component {
                   children: [
                     playButtonBannerStyle(
                       {
+                        "aria-label": "Boton Reproducir Trailer Banner",
                         onClick: this.eventTrailerMovie,
                         class: "button-banner play",
                         id: idMovie[1],
@@ -160,6 +165,7 @@ class Banner extends Component {
                     ),
                     addButtonBannerStyle(
                       {
+                        "aria-label": "Boton Agregar Trailer Banner",
                         class: "button-banner add",
                         children: [
                           createChildren("i", { class: "icon-icon-plus" }),
@@ -180,6 +186,7 @@ class Banner extends Component {
                   children: [
                     playButtonBannerStyle(
                       {
+                        "aria-label": "Boton Reproducir Trailer Banner",
                         onClick: this.eventTrailerMovie,
                         class: "button-banner play",
                         id: idMovie[2],
@@ -192,6 +199,7 @@ class Banner extends Component {
                     ),
                     addButtonBannerStyle(
                       {
+                        "aria-label": "Boton Agregar Trailer Banner",
                         class: "button-banner add",
                         children: [
                           createChildren("i", { class: "icon-icon-plus" }),

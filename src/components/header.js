@@ -33,6 +33,8 @@ class Header extends Component {
   render() {
     return headerStyle(
       {
+        role: "region",
+        "aria-label": "Header",
         children: [
           containerLogoStyle(
             {

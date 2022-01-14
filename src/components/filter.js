@@ -33,7 +33,6 @@ const filterButtonStyle = styledComponent.button`
   font: var(--button)
   text-decoration: none;
   user-select: none;
-  color: var(--white);
   border: 0;
   cursor: pointer;
 `;
@@ -420,11 +419,15 @@ class Filter extends Component {
 
   renderSearch() {
     return formStyle({
+      role: "region",
+      "aria-label": "Form",
       class: "search",
       onSubmit: this.eventSubmit,
       children: [
         inputSearchStyle(
           {
+            role: "region",
+            "aria-label": "Search",
             type: "search",
             name: "search",
             id: "search",
@@ -434,6 +437,8 @@ class Filter extends Component {
         ),
         containerButtomStyle(
           {
+            role: "region",
+            "aria-label": "Boton Buscar",
             class: "container-buttom",
             children: [
               inputButtomStyle(
@@ -504,7 +509,7 @@ class Filter extends Component {
       {
         onClick: this.eventShowSearch,
         onResize: this.eventDynamicHeader,
-        ariaLabel: "Boton Buscar Pelicula",
+        "aria-label": "Boton Buscar Pelicula",
         class: "button-search-mobile",
         children: iconSearchMobileStyle(
           { class: "icon-icon-search-yellow", id: "search-mobile" },

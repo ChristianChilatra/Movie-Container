@@ -9,7 +9,7 @@ export async function scrollInfinity(filter, query) {
   const handleIntersection = async (entries) => {
     if (entries[0]["isIntersecting"] === true) {
       const listMovie = await new ListMovie({
-        page: ++pageLoad,
+        page: pageLoad++,
         filter,
       }).render();
       listMovie.forEach(($el) => {
